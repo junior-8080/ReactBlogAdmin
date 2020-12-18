@@ -13,7 +13,7 @@ function BarChartComponent({data}) {
 
     return (
         <BarChart width={900}
-            height={350}
+            height={300}
             data={data}
             margin={
                 {

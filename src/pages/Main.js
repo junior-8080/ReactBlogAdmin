@@ -2,18 +2,17 @@ import React, {useEffect, useState} from 'react';
 import Total from '../components/Total';
 import Summary from '../components/Summary';
 import AccountTypes from '../components/AccountTypes';
-import SignUpChart from '../components/SIgnUpChart';
+import LineChart from '../components/LineChart';
 import {Col, Row} from 'antd';
 import CountryForm from '../components/CountryForm';
-import FormChart from '../components/FormChart';
-import CountrySignup from '../components/CountrySignup'
+import BarChart from '../components/BarChart'
 import {FileAddOutlined,TeamOutlined,FileOutlined,FlagOutlined}   from '@ant-design/icons'
 import '../App.css';
 
 
 
 
-function Main(props) {
+function Main() {
 
 
     const [summary, setSummary] = useState('');
@@ -96,22 +95,22 @@ function Main(props) {
             </Row>
             <Row gutter={4} style={{marginTop:20}}>
                 <Col span={24} >
-                    <SignUpChart/>
+                    <LineChart title="Signups Per Month" path="signups"/>
                 </Col>
             </Row>
-            {/* <Row gutter={4} style={{marginTop:20}}>
+            <Row gutter={4} style={{marginTop:20}}>
                 <Col span={24} >
-                    <FormChart/>
-                </Col>
-            </Row> */}
-            <Row style={{marginTop:20}}>
-                <Col span={24} >
-                    <CountrySignup />
+                    <LineChart title="Forms Per Moth" path="forms/total"/>
                 </Col>
             </Row>
             <Row style={{marginTop:20}}>
                 <Col span={24} >
-                    <CountryForm />
+                    <BarChart title="Signups In Countries" path="signups" />
+                </Col>
+            </Row>
+            <Row style={{marginTop:20}}>
+                <Col span={24} >
+                    <BarChart title="Forms Created In Countries" path="forms/total" bottom={50}/>
                 </Col>
             </Row>
            

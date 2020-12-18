@@ -5,35 +5,34 @@ import moment from 'moment';
 import {BarChartOutlined,SearchOutlined} from '@ant-design/icons';
 import BarChartComponent from './BarChartComponent';
 
- const {Meta } = Card;
 
-const CountrySignup = () => {
+
+const BarChart= ({title,path,bottom}) => {
     
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [date,setDate] = useState(new Date().getFullYear());
   
     const onFinish = (value) => {
-        
         const date = moment(value.date).format('YYYY');
         setDate(date)
-  
          
       }
 
       useEffect(()=> {
           
-        fetch(`/signups/?date=${date}&keyword=country`)
+        fetch(`/${path}?date=${date}&keyword=country`)
         .then(res => res.json())
         .then(result => {
             setDate(date)
             setData(result.data)
         })
-      },[date])
+      },[date,path])
+      
 
     return (
-        <Card className="chartStyle" >
-            <Meta avatar={<BarChartOutlined/>}
-                title={`Signups  in countries in ${date}`} />
+        <Card className="chartStyle" style={{marginBottom:bottom}}>
+            <div className='date-picker-container'>
+               <p><span><BarChartOutlined />&nbsp;{title}</span></p>
                 <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
                     <Form.Item name="date">
                           <DatePicker picker="year" style={{borderColor:'#348AA7'}}/>  
@@ -42,10 +41,12 @@ const CountrySignup = () => {
                          <Button htmlType="submit" icon={<SearchOutlined  />} />
                     </Form.Item>
                 </Form>
-            { data ? <BarChartComponent data={data} /> : <Spin  size="sm" />}
-          
+              </div>
+          <div>
+              <BarChartComponent data={data} /> 
+          </div> 
         </Card>
     );
 }
 
-export default CountrySignup;
+export default BarChart;

@@ -61,10 +61,6 @@
   color: #000;
 }
 
-.date-pick {
-  float: right;
-  border-color:#348AA7;
-}
 
 svg.recharts-surface tspan {
   font-size: 0.6rem !important;
@@ -100,10 +96,6 @@ svg.recharts-surface tspan {
 .ant-table-wrapper tr:nth-child(2n) td {
   background-color: #eee;
 }
-/* 
-.expired-table tr:nth-child(2n) td {
-  background-color: #eee;
-} */
 
 .record-table thead {
   background-color: #f1f1f1;
@@ -122,10 +114,6 @@ li.ant-pagination-total-text {
   width: 8rem;
 }
 
-/* .invoice-debit{
-  display:'flex';
-  
-} */
 .payment {
   height: 100vh;
   display: flex;
@@ -226,7 +214,7 @@ li.ant-pagination-total-text {
 
 .chartStyle {
   width: 100%;
-  height: 450px;
+  height: 400;
   background-color: #fff;
   border-color: #348AA7;
   color:#000;
@@ -235,5 +223,16 @@ li.ant-pagination-total-text {
   border-color: #348AA7;
 }
 .chartStyle .ant-btn {
+  border-color:#348AA7;
+}
+
+.date-picker-container {
+  display:flex;
+  justify-content: space-between;
+
+}
+
+.date-picker-container .date-pick {
+
   border-color:#348AA7;
 }

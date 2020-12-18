@@ -1,69 +1,63 @@
 import React ,{useState,useEffect}from 'react';
 import moment from 'moment';
-import {Card, DatePicker,Form,Button,Spin} from 'antd';
+import {Card, DatePicker,Form,Button} from 'antd';
 import {BarChartOutlined,SearchOutlined} from '@ant-design/icons';
 import LineChartComponent from './LineChartCom';
 import 'antd/dist/antd.css';
-// import BarChartCom from './BarChart';
 
-const {Meta} = Card;
 const {RangePicker} = DatePicker;
 
 
-const  SignUpChart = () => {
+const  LineChart = ({title,path}) => {
   
-    const [signups,setSignUps] = useState([]);
+    const [data,setData] = useState([]);
     const [loading,setLoading] = useState(false);
     const [date,setDate] = useState( new Date().getFullYear());
 
     const onFinish = (values) => {
-     
-     const arraydate = values.date;
      let dates ='';
-     arraydate.map((item => {
-       if(dates !== moment(item).format('YYYY')+','){
-        dates +=  `${moment(item).format('YYYY')},`;
-       }
-     
-     }))
-    setDate(dates)
-    console.log(dates)
+     let startDate = moment(values.date[0]).format('YYYY');
+     let endDate = moment(values.date[1]).format('YYYY');
+     for (let index= startDate; index <= endDate; index++) {
+       if(date !== index+','){
+         dates +=  `${index},`;
+        }
+   }
+    setDate(dates);
     }
      
     useEffect(() => {
         setLoading(true)
-       fetch(`/signups?date=${date}&keyword=year`)
+        // setData([])
+       fetch(`/${path}?date=${date}&keyword=year`)
        .then(res => res.json())
        .then(result => {
-        // console.log(result.data[0].signups)
-        console.log(result.data)
-        setSignUps(result.data)
+        setData(result.data)
         setLoading(false)
        })
         
-    },[date])
+    },[date])   //eslint-disable-line
 
  
     return (
         <Card className="chartStyle" >
-              <Meta
-            avatar={
-                <BarChartOutlined />
-            }
-            title={`Signups per month in ${date}`}
-        
-          />
+          <div className="date-picker-container">
+              <p><BarChartOutlined /><span>&nbsp;{title}</span></p>
               <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
-                    <Form.Item name="date" style={{width:100}}>
+                    <Form.Item name="date">
                           <RangePicker picker="year"/>  
                     </Form.Item>
                     <Form.Item>
                          <Button htmlType="submit" icon={<SearchOutlined  />} />
                     </Form.Item>
-                </Form>
-             <LineChartComponent data={signups}loading={loading} />
+            </Form>
+          </div>             
+            <div style={{display:"block"}}>
+                <LineChartComponent data={data}loading={loading} />
+            </div>
+           
         </Card>
     );
 }
 
-export default SignUpChart;
+export default LineChart;

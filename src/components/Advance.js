@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { Form, Input,Select,DatePicker, Col,Row,Button } from 'antd';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import moment from 'moment';
+
 import '../App.css';
 
 const Custom = ({onFinish,handleSuffix}) => {
