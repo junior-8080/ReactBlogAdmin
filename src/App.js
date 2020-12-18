@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Main from './pages/Main';
+import { Switch,Route} from 'react-router-dom';
+import AllForms from './pages/AllForms';
+import NewUser from './components/NewUser';
+import Payment from './pages/Payment';
+import InvoiceForm from './components/InvoiceForm';
+import Invoice from './pages/Invoice';
+import Signin from './pages/Siginin'
+import { ProtectedRouter } from './ProtectedRouter';
+import 'antd/dist/antd.css';
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+const App = () => {
+
+     return (
+             <Switch>
+                 <Route path="/" exact component={Signin} />
+                <ProtectedRouter path="/overview" 
+                  component={Main}/>
+                <ProtectedRouter path="/forms" exact
+                  component={AllForms}/>
+                <ProtectedRouter path="/new_user" component={NewUser} />
+                <ProtectedRouter path="/payment" exact
+                 component={Payment} />
+                <ProtectedRouter path="/payment/new_invoice" 
+                 component={InvoiceForm} />
+                <ProtectedRouter path="/payment/invoice" 
+                 component={Invoice} />
+                 <Route path="*" render ={() => {
+                     return(
+                         <h1 style={{textAlign:"center"}}>404 Page Not Found</h1>
+                     )
+                 }}  />
+            </Switch>
+        );
 }
+
+
+    
+   
+
 
 export default App;

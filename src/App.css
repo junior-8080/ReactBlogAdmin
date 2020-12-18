@@ -1,38 +1,239 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+.main-row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ant-card {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+}
+
+.ant-card-meta {
+  /* color: #fff; */
+  border-bottom: 0;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.ant-card-meta-title {
+  /* color: #fff; */
+}
+
+.summary {
+  background-color: #3cb8ec;
+}
+
+.content {
+  background-color: rgb(239, 239, 239);
+  padding: 20px;
+
+}
+
+.amount {
+  vertical-align: middle;
+}
+
+.ant-spin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-spin-dot-item {
+  background-color: #fff;
+}
+
+.ant-table-cell {
+  font-size: small;
+  padding: 5px;
+
+}
+
+.smaller-label {
+  color: '#fff';
+  font-size: smaller;
+  margin: 0;
+  padding: 0;
+  float: right;
+  margin-right: 5px;
+  color: #000;
+}
+
+.date-pick {
+  float: right;
+  border-color:#348AA7;
+}
+
+svg.recharts-surface tspan {
+  font-size: 0.6rem !important;
+  color: black !important;
+}
+
+.recharts-pie-sector>g text {
+  font-size: 0.6rem !important;
+  z-index: 1000;
+}
+
+.record-table,
+.expired-table {
+  height: 100vh;
+}
+
+.record-table .ant-table-tbody>tr>td {
+  padding: 5px;
+}
+
+.expired-table .ant-table-tbody>tr>td {
+  padding: 5px;
+}
+
+.record-table .ant-spin-dot-item {
+  background-color: #000;
+}
+
+.expired-table .ant-spin-dot-item {
+  background-color: #000;
+}
+
+.ant-table-wrapper tr:nth-child(2n) td {
+  background-color: #eee;
+}
+/* 
+.expired-table tr:nth-child(2n) td {
+  background-color: #eee;
+} */
+
+.record-table thead {
+  background-color: #f1f1f1;
+}
+
+.ant-pagination-options {
+  display: none;
+}
+
+li.ant-pagination-total-text {
+  font-size: small;
+  opacity: .6;
+}
+
+.payment-svg {
+  width: 8rem;
+}
+
+/* .invoice-debit{
+  display:'flex';
+  
+} */
+.payment {
+  height: 100vh;
+  display: flex;
+  /* align-items: center; */
+  margin-top: 12em;
+  justify-content: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.payment-link {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 2px;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+  box-shadow: 1px 1px 1px 1px rgba(172, 165, 165, 0.7);
+  margin-right: 3em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.payment-row {
+  height: 200px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.payment-link h4 {
+  text-align: center;
+}
+
+.payment-link:hover {
+  top: -10px;
+}
+
+.pay-btn {
+  padding: .2em .5em;
+  background-color: #264e88;
+  border-radius: 2px;
+  font-size: 11px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.pay-btn:hover {
+  background-color: #188e88;
+}
+
+.invoice-table {
+  height: 100vh;
+}
+
+.invoice-table .ant-spin-dot-item {
+  background-color: #000;
+}
+
+.invoice-form {
+  padding: 1em;
+  padding-top: 2em;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px rgba(172, 165, 165, 0.7);
+}
+
+.del-btn {
+  padding: .2em .5em;
+  background-color: rgb(230, 11, 11);
+  color: #fff;
+  border-radius: 2px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.del-btn:hover {
+  background-color: rgb(255, 119, 119);
+}
+
+.invoice-table .ant-table-tbody>tr>td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.invoice-amount {
+  text-align: right;
+}
+
+.new-user-form {
+  margin-left: auto;
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(172, 165, 165, 0.7);
+}
+
+.sign-form {
+  height: 100vh;
+  background-color: #04142b;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.chartStyle {
+  width: 100%;
+  height: 450px;
+  background-color: #fff;
+  border-color: #348AA7;
+  color:#000;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chartStyle .ant-picker{
+  border-color: #348AA7;
+}
+.chartStyle .ant-btn {
+  border-color:#348AA7;
 }
