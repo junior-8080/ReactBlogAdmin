@@ -22,11 +22,11 @@ function BarChartComponent({data}) {
                 }
         }>
             <CartesianGrid strokeDasharray="2 2"/>
-            <XAxis dataKey="country" tick={{ fill: '#000' }}  interval={0} angle={40}/>
+            <XAxis dataKey="country" tick={{ fill: '#000' }}  interval={0} angle={40} />
             <YAxis tick={{ fill: '#000' }}/>
             <Tooltip labelStyle={{color:"#000"}}/>
             {/* <Legend/> */}
-            <Bar dataKey="value" fill="#348AA7" label={{stroke:"#000"}}/>
+            <Bar dataKey="value" fill="#348AA7" label={{stroke:"#000",position:"top"}}/>
             {/* <Bar dataKey="signups" fill="#a6bfb7"/> */}
         </BarChart>
     );

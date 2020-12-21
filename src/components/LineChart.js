@@ -22,7 +22,9 @@ const  LineChart = ({title,path}) => {
        if(date !== index+','){
          dates +=  `${index},`;
         }
+        
    }
+   dates = dates.slice(0, -1)
     setDate(dates);
     }
      

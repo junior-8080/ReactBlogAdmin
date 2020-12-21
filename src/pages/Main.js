@@ -4,7 +4,7 @@ import Summary from '../components/Summary';
 import AccountTypes from '../components/AccountTypes';
 import LineChart from '../components/LineChart';
 import {Col, Row} from 'antd';
-import CountryForm from '../components/CountryForm';
+// import CountryForm from '../components/CountryForm';
 import BarChart from '../components/BarChart'
 import {FileAddOutlined,TeamOutlined,FileOutlined,FlagOutlined}   from '@ant-design/icons'
 import '../App.css';
@@ -73,16 +73,16 @@ function Main() {
         <div style={{height:'100vh',overflowY:'scroll',overflowX:'hidden'}}>
             <Row gutter={2}> 
                 <Col span={6}>
-                    <Total total={total_acc} backgroundColor="#348AA7"color="#000" title="Total Accounts" avatar={<TeamOutlined />}/>
+                    <Total total={total_acc} backgroundColor="#348AA7"color="#04142b" title="Total Accounts" avatar={<TeamOutlined />}/>
                 </Col>
                 <Col span={6}>
-                    <Total total={newForms} backgroundColor="#7cb7e6" color="#00" title="New Forms" avatar={<FileAddOutlined />}/>
+                    <Total total={newForms} backgroundColor="#7cb7e6" color="#fff" title="New Forms" avatar={<FileAddOutlined />}/>
                 </Col>
                 <Col span={6}>
-                     <Total total={total_form} backgroundColor="#348AA7" color="#000" title="Total Forms" avatar={<FileOutlined />}/>
+                     <Total total={total_form} backgroundColor="#348AA7" color="#04142b" title="Total Forms" avatar={<FileOutlined />}/>
                 </Col>
                 <Col span={6}>
-                   <Total total={total_country} backgroundColor="#7cb7e6" color="#000" title="Countries" avatar={<FlagOutlined />}/>
+                   <Total total={total_country} backgroundColor="#7cb7e6" color="#fff" title="Countries" avatar={<FlagOutlined />}/>
                 </Col>
             </Row>
             <Row>

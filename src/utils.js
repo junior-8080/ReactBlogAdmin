@@ -75,7 +75,8 @@ export const defaultDate = (date) => {
     return moment(date).format('MMM DD, YYYY');
     
 }
-const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+export const hex = ['#cd5c5c','#6495ed',"#7CFC00",'#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed',
+'#ff69b4','#ba55d3','#ffa500','#40e0d0'];
 
 export const getRandomNumber =() => {
   return Math.floor(Math.random() * hex.length);
