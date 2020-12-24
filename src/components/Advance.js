@@ -12,16 +12,26 @@ const Custom = ({onFinish,handleSuffix}) => {
   const [to, setTo] = useState({});
 
   const handleTo = (value,allvalues) => {
-        const see = allvalues.custom_field.filter(field => typeof field === 'object')
-        if((see.length > 0)){
-          if((see[0].what_to === "signup_date" || see[0].what_to === "form_creation_date" ) && (see[0].value)){
+      // console.log(value)
+      // console.log(allvalues)
+      //  console.log(value)
+        const see = value.custom_field.filter(field => typeof field === 'object');
+        console.log(see);
+        const i = see.length - 1;
+        if((allvalues.custom_field.length > 1)){
+          if((see[i].what_to === "signup_date" || see[i].what_to === "form_creation_date" || see[i].what_to === "expiry_date") && (see[i].value)){
                   delete see[0].value
           }
+          const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
+          allvalues.custom_field[index] = see[i];
         }
-        const index = allvalues.custom_field.findIndex(x =>x.what_to === see[0].what_to);
-        allvalues[index] = see[0]
-        console.log(see[0])
+
+    
+        // console.log(see); 
+       
         setTo(allvalues);
+        // console.log(allvalues)
+
     }
 
 return ( 
@@ -33,7 +43,7 @@ return (
             <>
               {fields.map((field,index) => {
                 let too = ((to.custom_field || [])[field.key] || {}).what_to || '';
-                
+                console.log(too)
                 
                 return (
 
@@ -77,7 +87,7 @@ return (
                    { index > 0 ? <MinusCircleOutlined
                         onClick={() => {
                           setaddIconCount(addIconCount -1)
-                        remove(field.name);
+                          remove(field.name);
                         }}
                     /> : null}
                   {index >= addIconCount ? <PlusCircleOutlined onClick={() => {
