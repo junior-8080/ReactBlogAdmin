@@ -37,7 +37,7 @@ const AllForms = () => {
     
 
     const onFinish = (values) => { 
-        console.log(values)
+       
         let query = '';
         values.custom_field.forEach((field) => {
             query+= `${field.what_to}=${field.value}&`
@@ -47,8 +47,7 @@ const AllForms = () => {
     }
 
     useEffect(() => {
-        
-        setLoading(true)
+        setLoading(true);
         const url = `/forms?` + search + `offset=${page === 1? 0:page}`;
         fetch(url).then((res) => res.json()).then((response) => {
             setLoading(false);
@@ -72,35 +71,25 @@ const AllForms = () => {
         
     }
 
-    // const handleTo = (value,allvalues) => {
-    // //    console.log(allvalues);
-    //     setTo(allvalues);
-    // }
-
     const onAll = () => {
         setLoading(true)
         setSearch('');
         setPage(0); 
     }
     
-    const onDownload = () => {
+    const onDownload = () => { 
+        // //    console.log(allvalues);
          fetch('/api/report/download');
     }
 
     const getPage = (value) => {
-        // console.log(value)
+        
         setLoading(true)
         setPage(value)
     }
 
-    // const onSearch = (value) => {
-    //     // console.log('search')
-    //    setSearch(` u_name=${value}&`)
-    //    setPage(0)  
-    // }
-  
     const getFilter = (value) => {
-        // console.log(".jdjfkjdf")
+        
          const query = value === 'all'?'' : `keyword=${value}&`;
          setSearch(query);
          setPage(0)

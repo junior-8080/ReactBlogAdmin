@@ -6,7 +6,7 @@ import {hex} from '../utils';
 
 
 const LineChartCom = ({data,loading}) => {
-  console.log(data)
+  // console.log(data)
 
     let lines = ""
 
@@ -14,13 +14,13 @@ const LineChartCom = ({data,loading}) => {
 
     const key = Object.keys(data[4]);
      lines  =  key.map((item,index) => {
-        console.log(item)
+        // console.log(item)
         return item !== 'name' && <Line type="monotone" dataKey={item} stroke={hex[index]} activeDot={{r: 6}}    label={{stroke:"#000"}} />  //eslint-disable-line
     }) //eslint-dsiable-line
    }
    
    const handleClick = (value) => {
-     console.log(value)
+    //  console.log(value)
     // value.payload.hide = true
    }
    

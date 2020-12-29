@@ -114,7 +114,7 @@ const TableRecords = ({tableData,getPage,loading}) => {
     ];
 
     useEffect(() => {
-        console.log('table rendered')
+        // console.log('table rendered')
     },[tableData])
 
     return (
