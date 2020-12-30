@@ -35,7 +35,7 @@ const NewUser = (props) => {
         };
        
         setIsLoading(true);
-        fetch('/account', {
+        fetch('/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

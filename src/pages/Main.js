@@ -4,9 +4,8 @@ import Summary from '../components/Summary';
 import AccountTypes from '../components/AccountTypes';
 import LineChart from '../components/LineChart';
 import {Col, Row} from 'antd';
-// import CountryForm from '../components/CountryForm';
-import BarChart from '../components/BarChart'
-import {FileAddOutlined,TeamOutlined,FileOutlined,FlagOutlined}   from '@ant-design/icons'
+import BarChart from '../components/BarChart';
+import {FileAddOutlined,TeamOutlined,FileOutlined,FlagOutlined}   from '@ant-design/icons';
 import '../App.css';
 
 

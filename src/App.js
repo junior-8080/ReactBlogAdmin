@@ -8,6 +8,7 @@ import InvoiceForm from './components/InvoiceForm';
 import Invoice from './pages/Invoice';
 import Signin from './pages/Siginin'
 import { ProtectedRouter } from './ProtectedRouter';
+import PreventLogout  from './PreventLogout';
 import 'antd/dist/antd.css';
 import './App.css'
 
@@ -18,7 +19,7 @@ const App = () => {
 
      return (
              <Switch>
-                 <Route path="/" exact component={Signin} />
+                 <PreventLogout path="/" exact component={Signin} />
                 <ProtectedRouter path="/overview" 
                   component={Main}/>
                 <ProtectedRouter path="/forms" exact

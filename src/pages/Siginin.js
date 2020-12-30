@@ -41,18 +41,18 @@ const Signin = (props) => {
     }} spin/>;
 
 
-    if(isLogin){
-        return(
-            <Redirect 
-            to={{
-                pathname:'/overview',
-                state:{
-                    from:props.location.pathname
-                }
-            }}
-         />
-        )
-    }
+    // if(isLogin){
+    //     return(
+    //         <Redirect 
+    //         to={{
+    //             pathname:'/overview',
+    //             state:{
+    //                 from:props.location.pathname
+    //             }
+    //         }}
+    //      />
+    //     )
+    // }
     
     
  
@@ -109,7 +109,8 @@ const Signin = (props) => {
                         name="email"
                         rules={[{
                             required: true,
-                            type: 'email'
+                            type: 'email',
+                            message:"Email is required"
                         }
                     ]}>
                         <Input/>
@@ -120,7 +121,7 @@ const Signin = (props) => {
                         name="password"
                         rules={[{
                             required: true,
-                            message: 'Please input your password!'
+                            message: 'Password is required'
                         }
                     ]}>
                         <Input.Password/>
