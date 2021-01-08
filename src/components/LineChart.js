@@ -15,6 +15,7 @@ const  LineChart = ({title,path}) => {
     const [loading,setLoading] = useState(false);
     const [date,setDate] = useState( new Date().getFullYear());
     const [view,setView] = useState('month');
+    const [disable,setDisable] = useState(false)
 
     const onFinish = (values) => {
      let dates ='';
@@ -28,6 +29,11 @@ const  LineChart = ({title,path}) => {
    }
    dates = dates.slice(0, -1)
     setDate(dates);
+    if(date.split(',').length > 1) {
+      setDisable(true)
+    }else{
+      setDisable(false)
+    }
     }
      
     useEffect(() => {
@@ -43,7 +49,7 @@ const  LineChart = ({title,path}) => {
     },[date,view])   //eslint-disable-line
 
     const handleChange = (value) => {
-        console.log(value)
+       
           setView(value)
  }
 
@@ -51,7 +57,7 @@ const  LineChart = ({title,path}) => {
         <Card className="chartStyle" >
           <div className="date-picker-container">
               <p><BarChartOutlined /><span>&nbsp;{title}&nbsp;{date}</span></p>
-              <GraphView  handleChange={handleChange} view={view}/>
+              <GraphView  handleChange={handleChange} view={view} disable={disable}/>
               <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
                     <Form.Item name="date">
                           <RangePicker picker="year"/>  
