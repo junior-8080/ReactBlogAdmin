@@ -4,6 +4,7 @@ import {Card, DatePicker,Form,Button} from 'antd';
 import {BarChartOutlined,SearchOutlined} from '@ant-design/icons';
 import LineChartComponent from './LineChartCom';
 import 'antd/dist/antd.css';
+import GraphView from './GraphView.js';
 
 const {RangePicker} = DatePicker;
 
@@ -13,6 +14,7 @@ const  LineChart = ({title,path}) => {
     const [data,setData] = useState([]);
     const [loading,setLoading] = useState(false);
     const [date,setDate] = useState( new Date().getFullYear());
+    const [view,setView] = useState('month');
 
     const onFinish = (values) => {
      let dates ='';
@@ -31,20 +33,25 @@ const  LineChart = ({title,path}) => {
     useEffect(() => {
         setLoading(true)
         // setData([])
-       fetch(`/${path}?date=${date}&keyword=year`)
+       fetch(`/${path}?dates=${date}&keyword=${view}`)
        .then(res => res.json())
        .then(result => {
         setData(result.data)
         setLoading(false)
        })
         
-    },[date])   //eslint-disable-line
+    },[date,view])   //eslint-disable-line
 
- 
+    const handleChange = (value) => {
+        console.log(value)
+          setView(value)
+ }
+
     return (
         <Card className="chartStyle" >
           <div className="date-picker-container">
-              <p><BarChartOutlined /><span>&nbsp;{title}</span></p>
+              <p><BarChartOutlined /><span>&nbsp;{title}&nbsp;{date}</span></p>
+              <GraphView  handleChange={handleChange} view={view}/>
               <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
                     <Form.Item name="date">
                           <RangePicker picker="year"/>  

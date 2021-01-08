@@ -2,6 +2,7 @@ import React from 'react';
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
   } from 'recharts';
+import {Empty}  from  'antd';
 import {hex} from '../utils';
 
 
@@ -11,18 +12,19 @@ const LineChartCom = ({data,loading}) => {
     let lines = ""
 
    if(data.length > 0){
+    
 
-    const key = Object.keys(data[4]);
+    const key = Object.keys(data[4] || data[0] || data[1] || data[2]);
      lines  =  key.map((item,index) => {
-        // console.log(item)
+        console.log(item)
         return item !== 'name' && <Line type="monotone" dataKey={item} stroke={hex[index]} activeDot={{r: 6}}    label={{stroke:"#000"}} />  //eslint-disable-line
     }) //eslint-dsiable-line
    }
    
-   const handleClick = (value) => {
-    //  console.log(value)
-    // value.payload.hide = true
+   if(data.length === 0){
+     return <div style={{height:300}}><Empty /></div>
    }
+
    
 
 
@@ -48,7 +50,7 @@ const LineChartCom = ({data,loading}) => {
             lines
         }
         <Tooltip   cursor={false} labelStyle={{color:"#000"}}   />
-        <Legend onClick={handleClick} />
+        <Legend />
       </LineChart>
     );
 }

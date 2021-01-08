@@ -2,6 +2,8 @@ import React,{useState} from 'react';
 import {LoadingOutlined,UserAddOutlined} from '@ant-design/icons'
 import {Form, Input, Button, message, Col,Row} from 'antd';
 
+
+
 const layout = {
     labelCol: {
         span: 0
@@ -18,10 +20,10 @@ const tailLayout = {
     }
 };
 
-const NewUser = (props) => {
+const NewUser = () => {
 
-    const [isLoading,
-        setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [form] = Form.useForm()
 
     const antIcon = <LoadingOutlined style={{
         fontSize: "small"
@@ -48,6 +50,7 @@ const NewUser = (props) => {
                 if (result.message.email) {
                     setIsLoading(false)
                     message.success('New User Created: '+ result.message.email);
+                    form.resetFields()
                    
                 }else{
                     message.success(result.message);
@@ -66,7 +69,7 @@ const NewUser = (props) => {
             className="new-user-form"
             {...layout}
             name="basic"
-            onFinish={onFinish}>
+            onFinish={onFinish} form={form}>
             <Form.Item
                 name="email"
                 rules={[{

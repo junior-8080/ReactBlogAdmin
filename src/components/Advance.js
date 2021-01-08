@@ -12,9 +12,7 @@ const Custom = ({onFinish,handleSuffix}) => {
   const [to, setTo] = useState({});
 
   const handleTo = (value,allvalues) => {
-      // console.log(value)
-      // console.log(allvalues)
-      //  console.log(value)
+     
         const see = value.custom_field.filter(field => typeof field === 'object');
         console.log(see);
         const i = see.length - 1;

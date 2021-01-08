@@ -236,3 +236,6 @@ li.ant-pagination-total-text {
 .ant-form-item-explain{
   font-size:.7rem;
 }
+.graph-view button {
+ margin-left: 5px;
+}

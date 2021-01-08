@@ -94,22 +94,22 @@ function Main() {
             </Row>
             <Row gutter={4} style={{marginTop:20}}>
                 <Col span={24} >
-                    <LineChart title="Signups Per Month" path="signups"/>
+                    <LineChart title="Signups In" path="signups/view"/>
                 </Col>
             </Row>
             <Row gutter={4} style={{marginTop:20}}>
                 <Col span={24} >
-                    <LineChart title="Forms Per Moth" path="forms/total"/>
+                    <LineChart title="Forms Created In" path="forms/view"/>
                 </Col>
             </Row>
             <Row style={{marginTop:20}}>
                 <Col span={24} >
-                    <BarChart title="Signups In Countries" path="signups" />
+                    <BarChart title="Signups In Countries In" path="signups" />
                 </Col>
             </Row>
             <Row style={{marginTop:20}}>
                 <Col span={24} >
-                    <BarChart title="Forms Created In Countries" path="forms/total" bottom={50}/>
+                    <BarChart title="Forms Created In Countries In" path="forms/total" bottom={50}/>
                 </Col>
             </Row>
            

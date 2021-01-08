@@ -7,9 +7,14 @@ import {
     CartesianGrid,
     Tooltip
 } from 'recharts';
+import {Empty}  from 'antd';
 
 
 function BarChartComponent({data}) {
+
+    if(data.length === 0){
+        return <div style={{height:300}}><Empty /></div>
+      }
 
     return (
         <BarChart width={900}
