@@ -44,6 +44,7 @@ const AllForms = () => {
         });
         setSearch(query);
         setPage(1);
+        setShowForm(false);
     }
 
     useEffect(() => {

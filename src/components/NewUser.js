@@ -74,7 +74,8 @@ const NewUser = () => {
                 name="email"
                 rules={[{
                     required: true,
-                    type: 'email'
+                    type: 'email',
+                    mesasge:'Please input your email'
                 }
             ]}>
                 <Input placeholder="Email"/>

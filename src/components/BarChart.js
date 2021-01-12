@@ -4,7 +4,7 @@ import {Card,DatePicker, Button,Form}
 import moment from 'moment';
 import {BarChartOutlined,SearchOutlined} from '@ant-design/icons';
 import BarChartComponent from './BarChartComponent';
-import GraphView from './GraphView.js';
+// import GraphView from './GraphView.js';
 
 
 

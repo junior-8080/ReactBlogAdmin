@@ -29,16 +29,10 @@ const  LineChart = ({title,path}) => {
    }
    dates = dates.slice(0, -1)
     setDate(dates);
-    if(date.split(',').length > 1) {
-      setDisable(true)
-    }else{
-      setDisable(false)
-    }
-    }
+  }
      
     useEffect(() => {
         setLoading(true)
-        // setData([])
        fetch(`/${path}?dates=${date}&keyword=${view}`)
        .then(res => res.json())
        .then(result => {
@@ -49,7 +43,6 @@ const  LineChart = ({title,path}) => {
     },[date,view])   //eslint-disable-line
 
     const handleChange = (value) => {
-       
           setView(value)
  }
 
@@ -68,7 +61,7 @@ const  LineChart = ({title,path}) => {
             </Form>
           </div>             
             <div style={{display:"block"}}>
-                <LineChartComponent data={data}loading={loading} />
+                <LineChartComponent data={data}loading={loading} view={view}/>
             </div>
            
         </Card>

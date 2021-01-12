@@ -6,19 +6,19 @@ import {Empty}  from  'antd';
 import {hex} from '../utils';
 
 
-const LineChartCom = ({data,loading}) => {
-  // console.log(data)
+const LineChartCom = ({data,view}) => {
+  
+  console.log(data)
 
     let lines = ""
 
-   if(data.length > 0){
+   if(data.length > 0 ){
     
-
     const key = Object.keys(data[4] || data[0] || data[1] || data[2]);
      lines  =  key.map((item,index) => {
-        console.log(item)
+    
         return item !== 'name' && <Line type="monotone" dataKey={item} stroke={hex[index]} activeDot={{r: 6}}    label={{stroke:"#000"}} />  //eslint-disable-line
-    }) //eslint-dsiable-line
+    }) 
    }
    
    if(data.length === 0){
