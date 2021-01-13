@@ -5,6 +5,7 @@ import {BarChartOutlined,SearchOutlined} from '@ant-design/icons';
 import LineChartComponent from './LineChartCom';
 import 'antd/dist/antd.css';
 import GraphView from './GraphView.js';
+import FilterDropdown from './FilterDropdown';
 
 const {RangePicker} = DatePicker;
 
@@ -15,9 +16,11 @@ const  LineChart = ({title,path}) => {
     const [loading,setLoading] = useState(false);
     const [date,setDate] = useState( new Date().getFullYear());
     const [view,setView] = useState('month');
-    const [disable,setDisable] = useState(false)
+    // const [disable,setDisable] = useState(false);
+    const [search,setSearch] = useState(undefined);
 
     const onFinish = (values) => {
+    
      let dates ='';
      let startDate = moment(values.date[0]).format('YYYY');
      let endDate = moment(values.date[1]).format('YYYY');
@@ -25,35 +28,39 @@ const  LineChart = ({title,path}) => {
        if(date !== index+','){
          dates +=  `${index},`;
         }
-        
-   }
-   dates = dates.slice(0, -1)
-    setDate(dates);
+     }
+     dates = dates.slice(0, -1)
+     setDate(dates);
+   
   }
      
     useEffect(() => {
         setLoading(true)
-       fetch(`/${path}?dates=${date}&keyword=${view}`)
+        fetch(`/${path}?dates=${date}&keyword=${view}` + (search ? `&search=${search}`:''))
        .then(res => res.json())
        .then(result => {
         setData(result.data)
         setLoading(false)
        })
         
-    },[date,view])   //eslint-disable-line
+    },[date,view,search])   //eslint-disable-line
 
     const handleChange = (value) => {
-          setView(value)
+      setView(value)
  }
+    const getValue = (value) => {
+      setSearch(value)
+    }
 
     return (
-        <Card className="chartStyle" >
+        <Card className="chartStyle">
           <div className="date-picker-container">
               <p><BarChartOutlined /><span>&nbsp;{title}&nbsp;{date}</span></p>
-              <GraphView  handleChange={handleChange} view={view} disable={disable}/>
+              <GraphView  handleChange={handleChange} view={view} />
+              <FilterDropdown getValue={getValue}/>
               <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
                     <Form.Item name="date">
-                          <RangePicker picker="year"/>  
+                      <RangePicker picker="year" getPopupContainer={trigger => trigger.parentElement}/> 
                     </Form.Item>
                     <Form.Item>
                          <Button htmlType="submit" icon={<SearchOutlined  />} />
