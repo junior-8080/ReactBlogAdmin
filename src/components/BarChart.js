@@ -32,14 +32,14 @@ const BarChart= ({title,path,bottom}) => {
     return (
         <Card className="chartStyle" style={{marginBottom:bottom}}>
             <div className='date-picker-container'>
-               <p><span><BarChartOutlined />&nbsp;{title}&nbsp;{date}</span></p>
+               <p className="graphs-title"><span><BarChartOutlined />&nbsp;{title}&nbsp;{date}</span></p>
                {/* <GraphView /> */}
                 <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
                     <Form.Item name="date">
-                          <DatePicker picker="year" style={{borderColor:'#348AA7'}} getPopupContainer={trigger => trigger.parentElement}/>  
+                          <DatePicker picker="year" style={{borderColor:'#348AA7'}} getPopupContainer={trigger => trigger.parentElement} size="small"/>  
                     </Form.Item>
                     <Form.Item>
-                         <Button htmlType="submit" icon={<SearchOutlined  />} />
+                         <Button htmlType="submit" icon={<SearchOutlined  />} size="small"/>
                     </Form.Item>
                 </Form>
               </div>

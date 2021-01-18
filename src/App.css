@@ -91,7 +91,7 @@ svg.recharts-surface tspan {
 }
 
 .ant-table-wrapper tr:nth-child(2n) td {
-  background-color: #c5c2c2;
+  background-color: #e9e0e0;
 }
 
 .record-table thead {
@@ -228,6 +228,9 @@ li.ant-pagination-total-text {
   justify-content: space-between;
 
 }
+.date-pick {
+  padding:0;
+}
 
 .date-picker-container .date-pick {
 
@@ -238,4 +241,7 @@ li.ant-pagination-total-text {
 }
 .graph-view button {
  margin-left: 5px;
+}
+.graphs-title{
+  font-size:0.8rem;
 }

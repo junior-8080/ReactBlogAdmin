@@ -12,8 +12,9 @@ const FilterDropdown = ({getValue}) => {
     return (
         <Select defaultValue="All"
             style={
-                {width: 100}
+                {width:120}
             }
+            suffixIcon=""
             size="small"
             onChange={handleChange} 
             getPopupContainer={trigger => trigger.parentElement} 
