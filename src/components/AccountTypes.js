@@ -3,7 +3,9 @@ import {Card, Spin,Table} from 'antd';
 import 'antd/dist/antd.css';
 import PieChartCom from './PieChartCom'
 import {UsergroupDeleteOutlined } from '@ant-design/icons';
-const {Meta }= Card;
+import {numberWithCommas}  from '../utils'
+const {Meta }= Card; 
+
 
 
 const AccountTypes = ({paidForms,accTypes}) => {
@@ -12,11 +14,11 @@ const AccountTypes = ({paidForms,accTypes}) => {
     const dataSource =  accTypes.length > 0 ? [
         {
           label:'Standard',
-          value:accTypes[0].count
+          value:numberWithCommas(accTypes[0].count)
         },
         {
           label:'Enterprise',
-          value:accTypes[1].count
+          value:numberWithCommas(accTypes[1].count)
         },
       
       ]: [];
@@ -36,15 +38,13 @@ const AccountTypes = ({paidForms,accTypes}) => {
     return (
         <Card
             style={
-                {width:"100%",height:400,backgroundColor:"#348AA7"}}
-             
-            
+                {width:"100%",height:400,backgroundColor:"#348AA7"}}   
         >
             <Meta
             avatar={
               <UsergroupDeleteOutlined />
             }
-            title="Account Types"
+            title="Forms Subscriptions And Active Forms"
         
             
           />
@@ -55,8 +55,7 @@ const AccountTypes = ({paidForms,accTypes}) => {
                  columns={columns}
                  className="acctype"
                  />
-             <p className="smaller-label">Forms Paid By Accounts Types</p>
-           <PieChartCom  data={paidForms}/> 
+           <PieChartCom  data={paidForms}/>
            </>
              : <Spin size="sm"color="#fff" /> 
 }

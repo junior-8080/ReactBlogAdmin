@@ -10,7 +10,7 @@ import FilterDropdown from './FilterDropdown';
 const {RangePicker} = DatePicker;
 
 
-const  LineChart = ({title,path}) => {
+const  LineChart = ({title,path,showView}) => {
   
     const [data,setData] = useState([]);
     const [loading,setLoading] = useState(false);
@@ -56,8 +56,8 @@ const  LineChart = ({title,path}) => {
         <Card className="chartStyle">
           <div className="date-picker-container">
               <div><BarChartOutlined /><span className="graphs-title">&nbsp;{title}&nbsp;{date}</span></div>
-              <GraphView  handleChange={handleChange} view={view} />
-              <FilterDropdown getValue={getValue}/>
+             <GraphView  handleChange={handleChange} view={view} /> 
+              {showView ? <FilterDropdown getValue={getValue}/> : null}
               <Form onFinish={onFinish} style={{display:"flex"}} className="date-pick">
                     <Form.Item name="date" >
                       <RangePicker picker="year" getPopupContainer={trigger => trigger.parentElement} size="small" style={{marginTop:0}} /> 

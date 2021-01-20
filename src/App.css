@@ -62,11 +62,13 @@
 svg.recharts-surface tspan {
   font-size: 0.6rem !important;
   color: #fff !important;
+  font-weight: 100;
 }
 
 .recharts-pie-sector>g text {
-  font-size: 0.6rem !important;
+  font-size: 0.65rem !important;
   z-index: 1000;
+  color:#fff;
 }
 
 .record-table,

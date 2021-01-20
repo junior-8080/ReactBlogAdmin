@@ -13,15 +13,13 @@ const LineChartCom = ({data}) => {
     let lines = ""
 
    if(data.length > 0 && (data[0].Standard || data[0].Enterprise)){
-    
-    
     const key = ['Standard','Enterprise']
      lines  =  key.map((item,index) => {
     
-        return item !== 'name' && <Line type="monotone" dataKey={item} stroke={hex[index]} activeDot={{r: 6}}    label={{stroke:hex[index]}} />  //eslint-disable-line
+        return item !== 'name' && <Line type="monotone" dataKey={item} stroke={hex[index]} activeDot={{r: 6}} dot={{ stroke: hex[0], strokeWidth: 2 }}    label={false} />  //eslint-disable-line
     }) 
    }else {
-     lines = <Line type="monotone" dataKey="value" stroke={hex[0]}  activeDot={{r: 6}}    label={{stroke:hex[0]}} /> 
+     lines = <Line type="monotone" dataKey="value" stroke={hex[0]}  activeDot={{r: 6}} dot={{ stroke: hex[0], strokeWidth: 2 }}    label={false} /> 
    }
    
    if(data.length === 0){
@@ -48,7 +46,7 @@ const LineChartCom = ({data}) => {
       >
         <CartesianGrid strokeDasharray="2 2"  />
         <XAxis dataKey="name" tick={{ fill: '#000' }}  interval={0} angle={40}/>
-        <YAxis tick={{ fill: '#000' }}   />
+        <YAxis tick={{ fill: '#000'}}   />
           {
             lines
           }

@@ -73,10 +73,10 @@ function Main() {
         <div style={{height:'100vh',overflowY:'scroll',overflowX:'hidden'}}>
             <Row gutter={2}> 
                 <Col span={6}>
-                    <Total total={total_acc} backgroundColor="#348AA7"color="#04142b" title="Total Accounts" avatar={<TeamOutlined />}/>
+                    <Total total={total_acc} backgroundColor="#348AA7"color="#04142b" title="Users Who Have Forms" avatar={<TeamOutlined />}/>
                 </Col>
                 <Col span={6}>
-                    <Total total={newForms} backgroundColor="#7cb7e6" color="#fff" title="New Forms" avatar={<FileAddOutlined />}/>
+                    <Total total={newForms} backgroundColor="#7cb7e6" color="#fff" title="Forms Created Today" avatar={<FileAddOutlined />}/>
                 </Col>
                 <Col span={6}>
                      <Total total={total_form} backgroundColor="#348AA7" color="#04142b" title="Total Forms" avatar={<FileOutlined />}/>
@@ -95,12 +95,12 @@ function Main() {
             </Row>
             <Row gutter={4} style={{marginTop:20}}>
                 <Col span={24} >
-                    <LineChart title="Signups In" path="signups/view"/>
+                    <LineChart title="Signups In" path="signups/view" showView={false}/>
                 </Col>
             </Row>
             <Row gutter={4} style={{marginTop:20}}>
                 <Col span={24} >
-                    <LineChart title="Forms Created In" path="forms/view"/>
+                    <LineChart title="Forms Created In" path="forms/view" showView={true}/>
                 </Col>
             </Row>
             <Row style={{marginTop:20}}>

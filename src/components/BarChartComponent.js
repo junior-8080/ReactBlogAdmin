@@ -31,8 +31,7 @@ function BarChartComponent({data}) {
             <YAxis tick={{ fill: '#000' }}/>
             <Tooltip labelStyle={{color:"#000"}}/>
             {/* <Legend/> */}
-            <Bar dataKey="value" fill="#348AA7" label={{stroke:"#000",position:"top"}}/>
-            {/* <Bar dataKey="signups" fill="#a6bfb7"/> */}
+            <Bar dataKey="value" fill="#0000ff" label={{stroke:"#000",position:"top"}}/>
         </BarChart>
     );
 }
