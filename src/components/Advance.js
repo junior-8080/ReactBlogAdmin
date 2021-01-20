@@ -10,6 +10,7 @@ const Custom = ({onFinish,handleSuffix}) => {
   const{Option} = Select;
   const {RangePicker} = DatePicker;
   const [to, setTo] = useState({});
+  const [form] = Form.useForm()
 
   const handleTo = (value,allvalues) => {
      
@@ -17,12 +18,14 @@ const Custom = ({onFinish,handleSuffix}) => {
         console.log(see);
         const i = see.length - 1;
         if((allvalues.custom_field.length > 1)){
-          if((see[i].what_to === "signup_date" || see[i].what_to === "form_creation_date" || see[i].what_to === "expiry_date") && (see[i].value)){
-                  delete see[0].value
-          }
-          const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
-          allvalues.custom_field[index] = see[i];
+          // if((see[i].what_to === "signup_date" || see[i].what_to === "form_creation_date" || see[i].what_to === "expiry_date") && (see[i].value)){
+          //         delete see[0].value
+          // }
         }
+
+        const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
+        allvalues.custom_field[index] = see[i];
+        console.log(allvalues)
 
     
         // console.log(see); 
@@ -32,8 +35,13 @@ const Custom = ({onFinish,handleSuffix}) => {
 
     }
 
+    const onRest  = () => {
+         form.resetFields()
+        //  handleSuffix();
+    }
+ 
 return ( 
-  <Form initialValues={{ custom_field: [""] }} onValuesChange={handleTo}  onFinish={onFinish} > 
+  <Form initialValues={{ custom_field: [""] }} onValuesChange={handleTo}  onFinish={onFinish} form={form} name="advance-form"> 
   
       <Form.List name="custom_field" style={{fontSize:12}} >
         {(fields, { add, remove }) => {
@@ -59,7 +67,7 @@ return (
                         >
                              <Select placeholder="Field">
                                 <Option value="organization_name">Organization name</Option>
-                                <Option value="u_name">User Name</Option>
+                                <Option value="u_name">Full Name</Option>
                                 <Option value="signup_country">
                                     Country
                                 </Option>
@@ -106,6 +114,7 @@ return (
       <Form.Item style={{fontSize:12,marginBottom:0}}>
               <Button htmlType="submit" size="small"  type="primary" style={{fontSize:12,marginTop:"30px",marginRight:10}}>Submit</Button>
              <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer"}} onClick={handleSuffix}>Cancel</span>
+             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer",marginLeft:"5px"}} onClick={onRest}>Reset</span>
       </Form.Item>
     </Form>
   );

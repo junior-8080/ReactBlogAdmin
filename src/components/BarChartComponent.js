@@ -22,7 +22,7 @@ function BarChartComponent({data}) {
             data={data}
             margin={
                 {
-                    top: 10,
+                    top: 15,
                     bottom: 10
                 }
         }>

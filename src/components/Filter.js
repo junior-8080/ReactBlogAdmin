@@ -4,11 +4,11 @@ import {FilterOutlined} from '@ant-design/icons'
 
 
 
-const Filter = ({getFilter,onAll}) => {
+const Filter = ({getFilter}) => {
     const menu = (
         <Menu>
             <Menu.Item>
-              <div  onClick={onAll}>All</div>
+              <div  onClick={() => getFilter('all')}>All</div>
             </Menu.Item>
             <Menu.Item>
                <div  onClick={() => getFilter('almostexpired')}>Almost Expired</div>

@@ -2,10 +2,9 @@ import React, {useEffect, useState} from 'react';
 import TableRecords from '../components/TableRecords';
 import {
     Input,
-    Button,
     Card
 } from 'antd';
-import {DownOutlined,UpOutlined,DownloadOutlined} from '@ant-design/icons';
+import {DownOutlined,UpOutlined} from '@ant-design/icons';
 import Advance from '../components/Advance';
 import Filter from '../components/Filter';
 
@@ -13,8 +12,6 @@ import Filter from '../components/Filter';
 
 const AllForms = () => {
   
-
-    // const [to, setTo] = useState({});
     const [tableData, setData] = useState({});
     const [isLoading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -37,11 +34,14 @@ const AllForms = () => {
     
 
     const onFinish = (values) => { 
-       
+        console.log(values)
         let query = '';
         values.custom_field.forEach((field) => {
-            query+= `${field.what_to}=${field.value}&`
+            console.log(field)
+           return query+= `${field.what_to}=${field.value}&`
         });
+
+        console.log(query)
         setSearch(query);
         setPage(1);
         setShowForm(false);
@@ -72,17 +72,6 @@ const AllForms = () => {
         
     }
 
-    const onAll = () => {
-        setLoading(true)
-        setSearch('');
-        setPage(0); 
-    }
-    
-    const onDownload = () => { 
-        // //    console.log(allvalues);
-         fetch('/api/report/download');
-    }
-
     const getPage = (value) => {
         
         setLoading(true)
@@ -93,7 +82,7 @@ const AllForms = () => {
         
          const query = value === 'all'?'' : `keyword=${value}&`;
          setSearch(query);
-         setPage(0)
+         setPage(1)
     }
 
 
@@ -105,10 +94,9 @@ const AllForms = () => {
         <div className="record-table">
             <div style={{width:"40%",marginLeft:"60%",display:"flex",justifyContent:'space-around',marginBottom:'10px'}}>
 
-            <Filter getFilter={getFilter} onAll ={onAll}/>
-
-            <Search placeholder="Search"  suffix={suffix ?  <UpOutlined onClick={handleSuffix}  />: <DownOutlined onClick={handleSuffix} placeholder="Search"/>} enterButton/>
-            <a href="/forms/download" style={{marginLeft:20}}><Button icon={<DownloadOutlined />} onClick={onDownload} label='download'></Button></a>
+                <Filter getFilter={getFilter} />
+                <Search  disabled={true} suffix={suffix ?  <UpOutlined onClick={handleSuffix}  />: <DownOutlined onClick={handleSuffix} />} enterButton/>
+                
             </div>
             
             <Card style={showForm ? card_css : style2} className="slide_down"> 

@@ -27,7 +27,7 @@ const TableRecords = ({tableData,getPage,loading}) => {
                 if(row.signup_date){
                     return defaultDate(row.signup_date);
                 }
-                return 'NA'
+                return 'N/A'
             },
             key:"sigup_date"
 
@@ -39,7 +39,7 @@ const TableRecords = ({tableData,getPage,loading}) => {
                 if(row.form_creation_date){
                     return defaultDate(row.form_creation_date);
                 }
-                return 'NA'
+                return 'N/A'
             },
             key:'c_date'
         },
@@ -49,7 +49,7 @@ const TableRecords = ({tableData,getPage,loading}) => {
             key:'country',
             render:(value,row) => {
                 if(row.signup_country){
-                  return row.signup_country = row.signup_country === "null" || row.signup_country === ''? 'NA':row.signup_country;
+                  return row.signup_country = row.signup_country === "null" || row.signup_country === ''? 'N/A':row.signup_country;
                 //   return row.signup_country = 'NA'
                 }
             }
@@ -57,17 +57,35 @@ const TableRecords = ({tableData,getPage,loading}) => {
         },{
             title: 'Contact',
             dataIndex: 'contact',
-            key:'contact'
+            key:'contact',
+            render:(value,row) => {
+                if(row.contact){
+                  return row.contact = row.contact === "null" || row.contact === ''? 'N/A':row.contact;
+                //   return row.signup_country = 'NA'
+                }
+            }
         }, {
             title: 'Email',
             dataIndex: 'email',
             width:300,
-            key:'email'
+            key:'email',
+            render:(value,row) => {
+                if(row.contact){
+                  return row.contact = row.contact === "null" || row.contact === ''? 'N/A':row.contact;
+                //   return row.signup_country = 'NA'
+                }
+            }
         }, {
             title: 'Form title',
             dataIndex: 'form_title',
             width:300,
-            key:'title'
+            key:'title',
+            render:(value,row) => {
+                if(row.form_title){
+                  return row.form_title = row.form_title === "null" || row.form_title === ''? 'N/A':row.form_title;
+                //   return row.signup_country = 'NA'
+                }
+            }
         },
         {
             title :'Number Of Responses',
@@ -96,7 +114,7 @@ const TableRecords = ({tableData,getPage,loading}) => {
                 if(row.expiry_date){
                   return expired(row.expiry_date);
                 }
-                return 'NA'
+                return 'N/A'
             },
             key:'expiry_date'
         },

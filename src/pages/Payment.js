@@ -2,7 +2,7 @@ import React from 'react';
 import invoice from '../images/invoice.svg';
 import invoice1 from '../images/invoice1.svg';
 import debits from '../images/debit.svg';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom'; 
 import {Col,Row} from 'antd';
 
 
