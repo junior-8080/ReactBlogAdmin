@@ -247,3 +247,6 @@ li.ant-pagination-total-text {
 .graphs-title{
   font-size:0.8rem;
 }
+path.recharts-sector:hover {
+  cursor: pointer;
+}

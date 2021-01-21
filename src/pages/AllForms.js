@@ -34,12 +34,14 @@ const AllForms = () => {
     
 
     const onFinish = (values) => { 
-        // console.log(values);
+        console.log(values);
         handleSuffix();
         let query = '';
+        const fieldkeys = [];
         values.custom_field.forEach((field) => {
-            console.log(field)
-           return query+= `${field.what_to}=${field.value}&`
+            // console.log(field)
+            query+= `${field.what_to}=${field.value}&`
+
         });
 
         console.log(query)

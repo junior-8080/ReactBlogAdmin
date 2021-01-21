@@ -4,52 +4,46 @@ import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
 import '../App.css';
 
+
 const Custom = ({onFinish,handleSuffix}) => {
 
   const [addIconCount, setaddIconCount] = useState(0);
   const{Option} = Select;
   const {RangePicker} = DatePicker;
   const [to, setTo] = useState({});
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
+  // const [render,setRender] = useState(false)
 
   const handleTo = (value,allvalues) => {
      
         const see = value.custom_field.filter(field => typeof field === 'object');
         console.log(see);
         const i = see.length - 1;
-        if((allvalues.custom_field.length > 1)){
-          // if((see[i].what_to === "signup_date" || see[i].what_to === "form_creation_date" || see[i].what_to === "expiry_date") && (see[i].value)){
-          //         delete see[0].value
-          // }
-        }
-
+  
         const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
         allvalues.custom_field[index] = see[i];
-        console.log(allvalues)
-
-    
-        // console.log(see); 
+        console.log(allvalues);
        
         setTo(allvalues);
-        // console.log(allvalues)
 
     }
 
-    const onRest  = () => {
-         form.resetFields()
-        //  handleSuffix();
+    const onRest = () => {
+        form.resetFields()
+        setaddIconCount(0)
     }
  
-return ( 
-  <Form initialValues={{ custom_field: [""] }} onValuesChange={handleTo}  onFinish={onFinish} form={form} name="advance-form"> 
+ return ( 
+  <Form initialValues={{ custom_field: [""]}} onValuesChange={handleTo}  onFinish={onFinish} form={form}  name="advance-form"> 
   
       <Form.List name="custom_field" style={{fontSize:12}} >
         {(fields, { add, remove }) => {
           return (
             <>
               {fields.map((field,index) => {
-                let too = ((to.custom_field || [])[field.key] || {}).what_to || '';
-                console.log(too)
+               
+                let too = ((to.custom_field || [])[index] || {}).what_to || '';
+                 console.log(index)
                 
                 return (
 
@@ -94,6 +88,7 @@ return (
                         onClick={() => {
                           setaddIconCount(addIconCount -1)
                           remove(field.name);
+                          
                         }}
                     /> : null}
                   {index >= addIconCount ? <PlusCircleOutlined onClick={() => {

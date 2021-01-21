@@ -13,7 +13,7 @@ const GraphView = ({handleChange,view,disable}) => {
           <Radio.Button value="year" >Yearly</Radio.Button>
           <Radio.Button value="month">Monthly</Radio.Button>
           <Radio.Button value="quarter" disabled={disable}>Quaterly</Radio.Button>
-          <Radio.Button value="week">Weekly</Radio.Button>
+          {/* <Radio.Button value="week">Weekly</Radio.Button> */}
          </Radio.Group>
        </div>
     );

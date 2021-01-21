@@ -44,7 +44,7 @@ const AccountTypes = ({paidForms,accTypes}) => {
             avatar={
               <UsergroupDeleteOutlined />
             }
-            title="Forms Subscriptions And Active Forms"
+            title="Forms Subscriptions"
         
             
           />

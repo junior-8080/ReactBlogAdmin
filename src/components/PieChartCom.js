@@ -62,7 +62,7 @@ import { PieChart, Pie,Legend,Cell, Tooltip} from 'recharts';
     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
   
    return (
-     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="end" scale={true}>
+     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="end" >
        {`${(percent * 100).toFixed(2)}%`}
      </text>
    );
