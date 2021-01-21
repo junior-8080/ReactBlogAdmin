@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import TableRecords from '../components/TableRecords';
 import {
     Input,
-    Card
+    Card,
+    message
 } from 'antd';
 import {DownOutlined,UpOutlined} from '@ant-design/icons';
 import Advance from '../components/Advance';
@@ -54,16 +55,24 @@ const AllForms = () => {
         setLoading(true);
         const url = `/forms?` + search + `offset=${page === 1? 0:page}`;
         fetch(url).then((res) => res.json()).then((response) => {
-            setLoading(false);
+            if(response.status === 200){
+                setLoading(false);
             setData({
                  data:response.data,
                  total: response.meta.data_length,
                  chunck:response.meta.pageSize,
                  currentPage: page
             })
+        }else {
+            setLoading(false)
+            message.error(response.message);
+
+        }
+            
            
         }).catch(function (error) {
             console.log(error);
+            
         });
 
     }, [page,search]);
