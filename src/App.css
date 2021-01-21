@@ -67,7 +67,7 @@ svg.recharts-surface tspan {
 
 .recharts-pie-sector>g text {
   font-size: 0.65rem !important;
-  z-index: 1000;
+  /* z-index: 1000; */
   color:#fff;
 }
 

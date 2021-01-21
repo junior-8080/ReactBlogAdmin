@@ -34,7 +34,8 @@ const AllForms = () => {
     
 
     const onFinish = (values) => { 
-        console.log(values)
+        // console.log(values);
+        handleSuffix();
         let query = '';
         values.custom_field.forEach((field) => {
             console.log(field)
@@ -92,7 +93,7 @@ const AllForms = () => {
     return (
    
         <div className="record-table">
-            <div style={{width:"40%",marginLeft:"60%",display:"flex",justifyContent:'space-around',marginBottom:'10px'}}>
+            <div style={{width:"40%",marginLeft:"60%",display:"flex",justifyContent:'space-around',marginBottom:'5px'}}>
 
                 <Filter getFilter={getFilter} />
                 <Search  disabled={true} suffix={suffix ?  <UpOutlined onClick={handleSuffix}  />: <DownOutlined onClick={handleSuffix} />} enterButton/>

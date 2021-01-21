@@ -56,13 +56,13 @@ import { PieChart, Pie,Legend,Cell, Tooltip} from 'recharts';
   const RADIAN = Math.PI / 180; 
   // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    console.log(percent)
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-   const x  = cx + radius * Math.cos(-midAngle * RADIAN);
-   const y = cy  + radius * Math.sin(-midAngle * RADIAN);
+    // console.log(percent)
+    const radius = innerRadius + (outerRadius - innerRadius) * 1.4;
+    const x  = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy  + radius * Math.sin(-midAngle * RADIAN);
   
    return (
-     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
+     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="end" scale={true}>
        {`${(percent * 100).toFixed(2)}%`}
      </text>
    );
@@ -76,9 +76,9 @@ const PieChartCom = ({data}) => {
         <PieChart width={400} height={400}>
           <Pie
           data={data} 
-          cx={300} 
-          cy={55} 
-          labelLine={false}
+          cx={200} 
+          cy={60} 
+          labelLine={true}
           label={renderCustomizedLabel}
           outerRadius={60} 
           fill="#8884d8"
@@ -88,7 +88,7 @@ const PieChartCom = ({data}) => {
           }
         </Pie>
         <Tooltip />
-        <Legend verticalAlign="top" height={36}/>
+        <Legend verticalAlign="top" height={30}/>
       </PieChart>
     );
 }
