@@ -5,7 +5,7 @@ import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import '../App.css';
 
 
-const Custom = ({onFinish,handleSuffix}) => {
+const Custom = ({onFinish,handleSuffix,handleCancel}) => {
 
   const [addIconCount, setaddIconCount] = useState(0);
   const{Option} = Select;
@@ -15,14 +15,16 @@ const Custom = ({onFinish,handleSuffix}) => {
   // const [render,setRender] = useState(false)
 
   const handleTo = (value,allvalues) => {
-     
+        // console.log(value)
         const see = value.custom_field.filter(field => typeof field === 'object');
-        console.log(see);
+        // console.log(see);
         const i = see.length - 1;
-  
-        const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
-        allvalues.custom_field[index] = see[i];
-        console.log(allvalues);
+        if(value.length > 0){
+          const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
+          allvalues.custom_field[index] = see[i];
+        }
+       
+        // console.log(allvalues);
        
         setTo(allvalues);
 
@@ -43,7 +45,7 @@ const Custom = ({onFinish,handleSuffix}) => {
               {fields.map((field,index) => {
                
                 let too = ((to.custom_field || [])[index] || {}).what_to || '';
-                 console.log(index)
+                //  console.log(index)
                 
                 return (
 
@@ -62,6 +64,9 @@ const Custom = ({onFinish,handleSuffix}) => {
                              <Select placeholder="Field">
                                 <Option value="organization_name">Organization name</Option>
                                 <Option value="u_name">Full Name</Option>
+                                <Option value="form_title">
+                                    Form Title
+                                </Option>
                                 <Option value="signup_country">
                                     Country
                                 </Option>
@@ -108,7 +113,7 @@ const Custom = ({onFinish,handleSuffix}) => {
       </Form.List>
       <Form.Item style={{fontSize:12,marginBottom:0}}>
               <Button htmlType="submit" size="small"  type="primary" style={{fontSize:12,marginTop:"30px",marginRight:10}}>Submit</Button>
-             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer"}} onClick={handleSuffix}>Cancel</span>
+             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer"}} onClick={() => handleCancel()}>Cancel</span>
              <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer",marginLeft:"5px"}} onClick={onRest}>Reset</span>
       </Form.Item>
     </Form>

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import TableRecords from '../components/TableRecords';
 import {
-    Input,
-    Card,
-    message
+    message,
+    Button,
+    Modal
 } from 'antd';
-import {DownOutlined,UpOutlined} from '@ant-design/icons';
+import {SearchOutlined} from '@ant-design/icons';
 import Advance from '../components/Advance';
 import Filter from '../components/Filter';
 
@@ -19,41 +19,42 @@ const AllForms = () => {
     const [suffix,setSuffix] =  useState(false);
     const [page,setPage]  = useState(1);
     const [search,setSearch] = useState('');
-    const {Search} = Input;
+    // const {Search} = Input;
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
 
     const card_css = {
      display: "block",
-     marginBottom: "25px",
      position:"absolute", 
-     zIndex: 1000, 
-     width: "38.3% ",
-    right: "1.3rem",
-    boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px",
-    padding:0,
-    transition:"0.3s all ease"
+     right: "1.3rem",
+     padding:0,
+     top:15
+
+    //  transition:"0.3s all ease"
      };
     
 
     const onFinish = (values) => { 
-        console.log(values);
+        // console.log(values);
         handleSuffix();
         let query = '';
-        const fieldkeys = [];
+        
         values.custom_field.forEach((field) => {
             // console.log(field)
             query+= `${field.what_to}=${field.value}&`
 
         });
 
-        console.log(query)
+        // console.log(query)
         setSearch(query);
         setPage(1);
-        setShowForm(false);
+        // setShowForm(false);
+        setIsModalVisible(!isModalVisible)
     }
 
     useEffect(() => {
         setLoading(true);
-        const url = `/forms?` + search + `offset=${page === 1? 0:page}`;
+        const url = `/forms?` + search + `offset=${page === 1? 0:page -1}`;
         fetch(url).then((res) => res.json()).then((response) => {
             if(response.status === 200){
                 setLoading(false);
@@ -97,29 +98,38 @@ const AllForms = () => {
          setPage(1)
     }
 
+    
+      const handleCancel = () => {
+        setIsModalVisible(false);
+      };
 
 
 
-  const style2 = {display:'none',opacity:0}
+
+//   const style2 = {display:'none',opacity:0}
     return (
    
         <div className="record-table">
-            <div style={{width:"40%",marginLeft:"60%",display:"flex",justifyContent:'space-around',marginBottom:'5px'}}>
-
-                <Filter getFilter={getFilter} />
-                <Search  disabled={true} suffix={suffix ?  <UpOutlined onClick={handleSuffix}  />: <DownOutlined onClick={handleSuffix} />} enterButton/>
+            <div style={{width:"100%",display:"flex",justifyContent:"space-between",marginBottom:'5px'}}>
+                <div></div>
+                <div>
+                    {/* <span>Filtered:{Filter}</span> */}
+                    <Filter getFilter={getFilter} />
+                    {/* <Search  disabled={true} suffix={suffix ?  <UpOutlined onClick={handleSuffix}  />: <DownOutlined onClick={handleSuffix} />} enterButton/> */}
+                    <Button size="sm" onClick={() => {setIsModalVisible(!isModalVisible)}} icon={<SearchOutlined />}>Search</Button>
+                </div>
                 
             </div>
             
-            <Card style={showForm ? card_css : style2} className="slide_down"> 
+            <Modal  style ={card_css} visible={isModalVisible} footer={[]} closable={false} onCancel={handleCancel}> 
              <div>
-                 <h4 style={{marginBottom:5}}>More Search</h4>
+                 <h4 style={{marginBottom:5}}>Search</h4>
                  <p style={{color:'#000',fontSize:10,margin:0}}>Select the fields you want the search to be refined according</p>
              </div>
                 
-                    <Advance  onFinish = {onFinish}handleSuffix={handleSuffix} />
+                    <Advance  onFinish = {onFinish}handleSuffix={handleSuffix} handleCancel={handleCancel}   />
 
-            </Card> 
+            </Modal> 
 
             <TableRecords 
                    tableData={tableData}
