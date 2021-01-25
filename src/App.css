@@ -250,3 +250,12 @@ li.ant-pagination-total-text {
 path.recharts-sector:hover {
   cursor: pointer;
 }
+
+
+.full-text-search{
+  border-right: none;
+}
+
+.antd-popover {
+  top:20;
+}

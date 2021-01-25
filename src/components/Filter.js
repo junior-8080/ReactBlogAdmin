@@ -20,7 +20,7 @@ const Filter = ({getFilter}) => {
      )
 
     return (
-        <Dropdown overlay={menu}>
+        <Dropdown overlay={menu} >
         <Button  size="md" onClick={e => e.preventDefault()}>
           Filter <FilterOutlined />
         </Button>

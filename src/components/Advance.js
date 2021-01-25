@@ -36,7 +36,7 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
     }
  
  return ( 
-  <Form initialValues={{ custom_field: [""]}} onValuesChange={handleTo}  onFinish={onFinish} form={form}  name="advance-form"> 
+  <Form initialValues={{ custom_field: [""]}} onValuesChange={handleTo}  onFinish={onFinish} form={form}  name="advance-form" style={{width:'25rem'}}> 
   
       <Form.List name="custom_field" style={{fontSize:12}} >
         {(fields, { add, remove }) => {
