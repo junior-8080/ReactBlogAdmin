@@ -9,6 +9,7 @@ const Invoice = (props) => {
     const [result, setResult] = useState(null);
     const [isLoading, setLoading] = useState(false);
     const [loading, setloading] = useState(false);
+    const [refresh,setFresh] =useState(false)
     const [page,setPage]= useState(1); 
     const [total,setTotal] = useState(0);
     const [chunck,setChunck] = useState(0);
@@ -25,7 +26,7 @@ const Invoice = (props) => {
   
 
     useEffect(() => {
-
+        
         const url = `http://payments.qa.esoko.com:9099/v1/invoices/?pageSize=100&page=${page}&order=asc`;
         setLoading(true)
         fetch(url)
@@ -35,9 +36,10 @@ const Invoice = (props) => {
             setResult(response.data.items);
             setTotal(response.data.total);
             setChunck(response.meta.pageSize)
-            setLoading(false)
+            setLoading(false);
+            
         })
-    },[page])
+    },[page,refresh])
 
     const onChange = (values) => {
         setLoading(true)
@@ -49,7 +51,7 @@ const Invoice = (props) => {
         const body = {
         mode:"checkout",
         payChannel:"momo",
-        redirectUrl:"http://localhost:3000/payment/invoice"
+        redirectUrl:"http://localhost:3000/payment/verification"
         }
         setloading(true)
         showModal();
@@ -79,7 +81,12 @@ const Invoice = (props) => {
 
     return (
         <div  className="invoice-table">
-            <Link to="/payment/invoice">Create Invoice</Link>
+            <div style={{display:"flex",justifyContent:"space-between"}}>
+               <Link to="/payment/invoice">Create Invoice</Link>
+               <div>
+                <Button size="small"onClick = {() => setFresh(!refresh)}>Refresh</Button>
+               </div>
+            </div>
            <InvoiceTable
              dataSource={result}
              isLoading={isLoading}
@@ -103,7 +110,7 @@ const Invoice = (props) => {
                 // </a>
               ]}>
                  {loading ? <p>Loading.....</p> : <><h3>Share This Link To Complete Payment Or Click To Pay</h3>
-                  <a href={checkoutUrl} target="_blank" rel="noopener noreferrer">{checkoutUrl}</a></>}
+                  <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" onClick ={()=> handleCancel()}>{checkoutUrl}</a></>}
               </Modal>
         </div>
     );
