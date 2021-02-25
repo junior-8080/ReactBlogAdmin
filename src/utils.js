@@ -56,15 +56,17 @@ export const expired = (date) => {
 }
 
 export const addZeroes = (num, curren) => {
+    console.log(num)
+    console.log(curren)
     // const array = ['$','£','₵']; let currency = '';
     const dec = num.split('.')[1]
     const len = dec && dec.length > 2
         ? dec.length
         : 2
     let number = Number(num).toFixed(len);
-    if (curren === 'cedis') 
+    if (curren === 'GHS') 
         return  number + ' (₵) ' ;
-    if (curren === 'usd') 
+    if (curren === 'USD') 
         return  number + ' ($)';
     if (curren === 'pounds') 
         return number + ' (£)' ;

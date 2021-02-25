@@ -259,3 +259,12 @@ path.recharts-sector:hover {
 .antd-popover {
   top:20;
 }
+
+.invoice-form-button .ant-form-item-control-input-content{
+  display: flex;
+  justify-content: space-between;
+}
+input,select,textarea,option::placeholder{
+  font-weight: 500;
+}
+

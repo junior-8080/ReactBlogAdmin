@@ -71,7 +71,7 @@ const TableRecords = ({tableData,getPage,loading}) => {
             key:'email',
             render:(value,row) => {
                 if(row.contact){
-                  return row.contact = row.contact === "null" || row.contact === ''? 'N/A':row.contact;
+                  return row.email = row.email === "null" || row.contact === ''? 'N/A':row.email;
                 //   return row.signup_country = 'NA'
                 }
             }

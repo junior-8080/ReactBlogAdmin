@@ -6,47 +6,48 @@ import {addZeroes,numberWithCommas}  from '../utils';
 
 
 const InvoiceTable = ({dataSource,getValues,total,currentPage,isLoading,chunck,handlePaid,handleDelete}) => { 
-    
+     
+     
 
     const columns = [
         {
-            title:'Invoice Date',
-            dataIndex:'invoice_date',
-            key:'invoice_date',
+            title:'Payment Date',
+            dataIndex:'invoiceDate',
+            key:'invoiceDate',
             width:'15%',
             render:(value,row) => {
-                if(row.invoice_date){
-                   return row.invoice_date = moment(row.invoice_date).format('MMM DD, YYYY')
+                if(row.invoiceDate){
+                   return row.invoiceDate = moment(row.invoiceDate).format('MMM DD, YYYY')
                 }
 
                 return null
             }
         },
         {
-            title:'Date',
-            dataIndex:'creation_date',
-            key:'creation_date',
+            title:'Created Date',
+            dataIndex:'createdTime',
+            key:'creationTime',
             width:'15%',
             render:(value,row) => {
-                if(row.creation_date){
-                  return row.creation_date = moment(row.creation_date).format('MMM DD, YYYY')
+                if(row.createdTime){
+                  return row.createdTime = moment(row.createdTime).format('MMM DD, YYYY')
                 }
                 return null
             }
 
-        },
-        {
+        },{
+        
             title: 'Customer Name',
-            dataIndex: 'customer_name',
+            dataIndex: 'customerName',
             fixed: 'left',
-            key:'customer_name',
+            key:'customerName',
             width:'18%',
            
         },
         {
-            title: 'Customer Email',
-            dataIndex: 'customer_email',
-            key:'customer_email',
+            title: 'CustomerEmail',
+            dataIndex: 'customerEmail',
+            key:'customerEmail',
             width:'20%'
         },
 
@@ -57,13 +58,16 @@ const InvoiceTable = ({dataSource,getValues,total,currentPage,isLoading,chunck,h
             width:'16%',
             className:'invoice-amount',
             render:(value, row) => {
-              return numberWithCommas(addZeroes(row.amount.toString(),row.currency))
+              if(row.amount){
+                return numberWithCommas(addZeroes(row.amount.toString(),row.currency))
+              }
+             
             }
             
         },{
             title: 'Source',
-            dataIndex: 'invoice_source',
-            key:'invoice_source',
+            dataIndex: 'invoiceSource',
+            key:'invoiceSource',
             width:'10%'
         },
         {
@@ -77,18 +81,19 @@ const InvoiceTable = ({dataSource,getValues,total,currentPage,isLoading,chunck,h
             render: (text, record) =>{
                 // console.log(record)
 
-                if(dataSource.length > 0  && record.status === 'processing') {
-        return <>
-            <Popconfirm title="Are You Sure ?" onConfirm={() => handlePaid(record.reference)}
-                okText="Yes" cancelText="No" placement="topRight" 
-                >
-                <span className="pay-btn" size="small">pay</span>&nbsp;
-             </Popconfirm>
-            <Popconfirm title="Are You Sure ?" onConfirm={() => handleDelete(record.reference)}
-                okText="Yes" cancelText="No" placement="topRight" icon={<QuestionCircleOutlined  style={{color:"red"}}/>}
-                >
-                <span className="del-btn"  size="small">cancel</span>
-            </Popconfirm>
+                if(dataSource.length > 0  && record.status  !== 'paid') {
+           return <>
+                <Popconfirm title="Are You Sure ?" onConfirm={() => handlePaid(record.invoiceRef)}
+                    okText="Yes" cancelText="No" placement="topRight" okButtonProps={{size:"small",type:"primary"}}
+                   
+                    >
+                    <span className="pay-btn" size="small">pay</span>&nbsp;
+                </Popconfirm>
+                <Popconfirm title="Are You Sure ?" onConfirm={() => handleDelete(record.invoiceRef)}
+                    okText="Yes" cancelText="No" placement="topRight" icon={<QuestionCircleOutlined  style={{color:"red"}}/>}
+                    >
+                    <span className="del-btn"  size="small">Delete</span>
+                </Popconfirm>
            </>
                 }
 
@@ -112,7 +117,9 @@ const onChange = (values) =>{
                 current:currentPage,
                 defaultPageSize:100,
                 size:'small',
-                showTotal:(total) => `${chunck} out of ${total}`}}
+                showTotal:(total) => dataSource.length === 100 ?`${((currentPage * chunck) + 1) - chunck} - ${chunck * currentPage} out of ${total}`
+                : `${((currentPage - 1) * chunck) + 1} - ${total} out of ${total}`
+            }}
                 loading={isLoading}
             scroll={
                 {

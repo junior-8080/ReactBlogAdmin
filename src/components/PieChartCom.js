@@ -82,6 +82,7 @@ const PieChartCom = ({data}) => {
           label={renderCustomizedLabel}
           outerRadius={60} 
           fill="#8884d8"
+          dataKey="value"
         >
         	{
           	data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)

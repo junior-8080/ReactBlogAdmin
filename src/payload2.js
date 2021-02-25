@@ -23,7 +23,7 @@ export const props3 = [
         label:'',
         placeholder: 'Amount',
         name:'amount',
-        required:true
+        required:true 
        
     },
     {

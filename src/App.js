@@ -27,9 +27,9 @@ const App = () => {
                 <ProtectedRouter path="/new_user" component={NewUser} />
                 <ProtectedRouter path="/payment" exact
                  component={Payment} />
-                <ProtectedRouter path="/payment/new_invoice" 
-                 component={InvoiceForm} />
                 <ProtectedRouter path="/payment/invoice" 
+                 component={InvoiceForm} />
+                <ProtectedRouter path="/payment/invoices" 
                  component={Invoice} />
                  <Route path="*" render ={() => {
                      return(

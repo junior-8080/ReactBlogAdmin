@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {LoadingOutlined,FundOutlined} from '@ant-design/icons'
 import {Form, Input, Button, message,Row,Col} from 'antd';
-// import { authzation } from '../auth';
-// import { Redirect } from 'react-router-dom';
 
 const layout = {
     labelCol: {

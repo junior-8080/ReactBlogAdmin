@@ -16,13 +16,13 @@ const Payment = (props) => {
         <div className="payment">
             <Row className="payment-row">
                 <Col    className="payment-link">
-                 <Link to='/payment/invoice'>
+                 <Link to='/payment/invoices'>
                     <img src={invoice} alt="list-invoice"  className="payment-svg" />
                     <h3>View Invoices</h3>
                     </Link>
                 </Col>
                 <Col  className="payment-link">
-                    <Link to='/payment/new_invoice'>
+                    <Link to='/payment/invoice'>
                         <img src={invoice1} alt="invoice" className="payment-svg" />
                         {/* <PlusOutlined  size={24}/>s */}
                         <h3>Create Invoice</h3>
