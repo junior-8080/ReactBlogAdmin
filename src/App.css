@@ -68,7 +68,7 @@ svg.recharts-surface tspan {
 .recharts-pie-sector>g text {
   font-size: 0.65rem !important;
   /* z-index: 1000; */
-  color:#fff;
+  color: #fff;
 }
 
 .record-table,
@@ -216,77 +216,100 @@ li.ant-pagination-total-text {
   height: 400;
   background-color: #fff;
   border-color: #348AA7;
-  color:#000;
+  color: #000;
 }
-.chartStyle .ant-picker{
+
+.chartStyle .ant-picker {
   border-color: #348AA7;
 }
+
 .chartStyle .ant-btn {
-  border-color:#348AA7;
+  border-color: #348AA7;
 }
 
 .date-picker-container {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 
 }
+
 .date-pick {
-  padding:0;
+  padding: 0;
 }
 
 .date-picker-container .date-pick {
 
-  border-color:#348AA7;
+  border-color: #348AA7;
 }
-.ant-form-item-explain{
-  font-size:.7rem;
+
+.ant-form-item-explain {
+  font-size: .7rem;
 }
+
 .graph-view button {
- margin-left: 5px;
+  margin-left: 5px;
 }
-.graphs-title{
-  font-size:0.8rem;
+
+.graphs-title {
+  font-size: 0.8rem;
 }
+
 path.recharts-sector:hover {
   cursor: pointer;
 }
 
 
-.full-text-search{
+.full-text-search {
   border-right: none;
 }
 
 .antd-popover {
-  top:20;
+  top: 20;
 }
 
-.invoice-form-button .ant-form-item-control-input-content{
+.invoice-form-button .ant-form-item-control-input-content {
   display: flex;
   justify-content: space-between;
 }
-input,select,textarea,option::placeholder{
+
+input,
+select,
+textarea,
+option::placeholder {
   font-weight: 500;
 }
 
 .verification-card {
-  width:80%;
+  width: 80%;
+  height: 50vh;
   margin-left: auto;
   margin-right: auto;
-  margin-top:75px;
   text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   color: #000;
 }
 
-.verification-card:hover{
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.payment-verification {
+
+  background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-@media(min-width:800px){
+
+.verification-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+@media(min-width:800px) {
 
   .verification-card {
-    width:30%;
-    margin-top:150px;
-    
+    width: 40%;
+    height: 35%;
+    /* margin-top:150px; */
+
   }
 }

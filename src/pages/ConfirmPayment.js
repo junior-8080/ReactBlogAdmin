@@ -2,15 +2,18 @@ import React,{useState,useEffect} from 'react';
 import {Card,Avatar, message} from 'antd';
 import {LoadingOutlined,CheckCircleTwoTone,CloseCircleOutlined} from '@ant-design/icons';
 
-import logo from '../images/esoko_logo.png';
+import logo from '../images/logo.png';
+// import logo1 from '../images/logo.png';
+import ConfrimationCard from '../components/ConfrimationCard';
 
 const ConfirmPayment = (props) => {
-
+  
     const note = {
         fontSize:11,
         color:"#000",
         opacity:.5
     }
+    
     
     const transactionId = props.location.search.split('=').splice(-1)[0];
     const [transactionStatus, setStatus] = useState("");
@@ -29,7 +32,7 @@ const ConfirmPayment = (props) => {
                 if(update.code === 200 && update.status === "SUCCESS"){
                     setStatus(result.data)
                     setloading(false)
-                    
+                     
                 }
             })
           }else {
@@ -40,6 +43,9 @@ const ConfirmPayment = (props) => {
     }, [transactionId]);
   
     return (
+     <section className="payment-verification">
+      <>
+      {/* <img src={logo1} width="20%"/> */}
       <Card className="verification-card">
           <Card.Meta 
              avatar ={
@@ -55,21 +61,17 @@ const ConfirmPayment = (props) => {
            <div>
                {
                  transactionStatus.status === 'approved'? 
-                 <div style= {{color:"#52c41a",fontSize:14}}>
-                     <h2 style={{color:"#52C41a"}}>SUCCESS</h2>
-                     <CheckCircleTwoTone twoToneColor="#52c41a" />
-                     <p>{transactionStatus.reason}</p>
-                 </div>
+                    <ConfrimationCard color="green"  icon={<CheckCircleTwoTone twoToneColor="green" size="large"/>}
+                        reason={transactionStatus.reason} status="SUCCESS" />
                  :
-                 <div style={{color:"#FF0000"}}>
-                     <h2 style={{color:"#FF0000"}}>FAILED</h2>
-                     <CloseCircleOutlined  color="#FF0000"/>
-                     <p style={{color:"#FF0000",fontSize:14}}>Transcation Declined</p>
-                </div>
+                 <ConfrimationCard color="#FF0000"  icon={<CloseCircleOutlined size="large"/>}
+                 reason="Transcation Declined!" status="FAILED" />
                }
            </div>
           }
       </Card>
+     </>
+    </section>
     );
 }
 

@@ -83,7 +83,7 @@ const InvoiceTable = ({dataSource,getValues,total,currentPage,isLoading,chunck,h
 
                 if(dataSource.length > 0  && record.status  !== 'paid') {
            return <>
-                <Popconfirm title="Are You Sure ?" onConfirm={() => handlePaid(record.invoiceRef)}
+                <Popconfirm title="Are You Sure ?" onConfirm={() => handlePaid(record.invoiceRef,record.customerEmail)}
                     okText="Yes" cancelText="No" placement="topRight" okButtonProps={{size:"small",type:"primary"}}
                    
                     >

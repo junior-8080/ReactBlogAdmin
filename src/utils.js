@@ -56,8 +56,8 @@ export const expired = (date) => {
 }
 
 export const addZeroes = (num, curren) => {
-    console.log(num)
-    console.log(curren)
+    // console.log(num)
+    // console.log(curren)
     // const array = ['$','£','₵']; let currency = '';
     const dec = num.split('.')[1]
     const len = dec && dec.length > 2
