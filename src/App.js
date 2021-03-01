@@ -32,7 +32,7 @@ const App = () => {
                  component={InvoiceForm} />
                 <ProtectedRouter path="/payment/invoices" 
                  component={Invoice} />
-                  <Route path="/payment/verification/:email" component={ConfirmPayment} />
+                  <Route path="/payment/verification" component={ConfirmPayment} />
                  <Route path="*" render ={() => {
                      return(
                          <h1 style={{textAlign:"center"}}>404 Page Not Found</h1>

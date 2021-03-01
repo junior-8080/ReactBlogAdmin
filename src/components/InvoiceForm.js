@@ -13,6 +13,7 @@ import moment  from 'moment';
 const InvoiceForm = () => {
 
     const history = useHistory();
+    const [form]= Form.useForm()
     const onFinish = (values) => {
         // console.log(values)
         values.invoiceDate = moment(values.invoiceDate).format("YYYY-MM-DD")
@@ -30,6 +31,7 @@ const InvoiceForm = () => {
 
                 if (result.code === 201 &&  result.status === 'RESOURCE_CREATED') {
                     message.success('New Invoice Created For: '+ values.customerName);
+                    form.resetFields();
                     history.push('/payment/invoice');
                    
                 }           
@@ -40,7 +42,7 @@ const InvoiceForm = () => {
         <Row style={{height:'100vh'}}>
             <Col span={12} offset={6} >
                 <h4><SnippetsOutlined /> New Invoice</h4>
-                <Form className="invoice-form" onFinish ={onFinish}>
+                <Form className="invoice-form" onFinish ={onFinish} form={form}>
                      <Form.Item 
                       name="customerName"
                       rules={[{ required: true}]}
@@ -120,7 +122,7 @@ const InvoiceForm = () => {
                         </Select>
                      </Form.Item>
                     <Form.Item className="invoice-form-button">
-                        <Link to="/payment"><Button icon={ <LeftCircleOutlined />} type="primary">Back To Payment</Button></Link>
+                        <Link to="/payment/invoices"><Button icon={ <LeftCircleOutlined />} type="primary">Invoices</Button></Link>
                         <Button htmlType="submit" type="primary">Save</Button>
                     </Form.Item>
                    

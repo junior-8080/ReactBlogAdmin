@@ -54,7 +54,7 @@ const Invoice = (props) => {
         const body = {
         mode:"checkout",
         payChannel:"momo",
-        redirectUrl:`http://localhost:3000/payment/verification/${emailValue}`
+        redirectUrl:`http://localhost:3000/payment/verification`
         }
         
         setloading(true)

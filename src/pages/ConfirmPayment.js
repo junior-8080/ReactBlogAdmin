@@ -25,14 +25,43 @@ const ConfirmPayment = (props) => {
       .then(res => res.json())
       .then(result => {
           if(result.code === 200 && result.status === "SUCCESS") {
-           
             fetch(`http://payments.qa.esoko.com:9099/v1/debits/confirmations/payswitch?transaction_id=${transactionId}`)
             .then(res => res.json())
             .then(update => {
                 if(update.code === 200 && update.status === "SUCCESS"){
-                    setStatus(result.data)
-                    setloading(false)
-                     
+
+                    fetch(`http://payments.qa.esoko.com:9099/v1/invoices/${update.data.invoiceRef}`)
+                    .then(res => res.json())
+                    .then( invoiceResult => {
+                        if(invoiceResult.code === 200 && invoiceResult.status === 'SUCCESS'){
+                            const body = {
+                                transactionId :transactionId,
+                                amount : invoiceResult.data.amount,
+                                currency : invoiceResult.data.currency,
+                                status: invoiceResult.data.status,
+                                customerEmail:invoiceResult.data.customerEmail
+                            }
+                            fetch(`/invoice/mail/receipt`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(body)
+                            })
+                            .then(res => res.json()) 
+                            .then(emailResult => {
+                                if(emailResult.statusCode === 200 && emailResult.message === 'success'){
+                                
+                                       setStatus(result.data)
+                                       setloading(false)
+                                      message.success(`Receipt Send To ${invoiceResult.data.customerEmail}`,6)
+                                }
+                                
+                            })
+                        }
+      
+                    })
+                                     
                 }
             })
           }else {
