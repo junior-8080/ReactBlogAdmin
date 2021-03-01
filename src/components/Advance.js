@@ -1,9 +1,55 @@
 import React,{useState} from 'react';
-import { Form, Input,Select,DatePicker, Col,Row,Button } from 'antd';
+import { Form, Input,Select,DatePicker, Col,Row,Button, InputNumber } from 'antd';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
 import '../App.css';
+import { Tooltip } from 'recharts';
+// import { options } from '../../../api/src/routes/forms';
 
+
+const cols = [
+  {
+    title:"Name",
+    type:"text",
+    value:"name",
+  },
+  {
+    title:"DOB",
+    type:"date",
+    value:"date_of",
+  },
+  {
+    title:"Age",
+    type:"number",
+    value:"age",
+  },
+]
+
+
+const AdvanceItems = ({to}) => {
+
+    if(to === "" || to === {}){
+      return <Input />
+    }
+
+    const result = cols.find(obj => {
+      return obj.value ===  to
+    });
+  
+
+   if(result.type === "text" ){
+     return <Input />
+   }
+
+   if(result.type === "number"){
+     return <InputNumber />
+   }
+   if(result.type === "date"){
+     return <DatePicker.RangePicker />
+   }
+
+
+}
 
 const Custom = ({onFinish,handleSuffix,handleCancel}) => {
 
@@ -12,28 +58,33 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
   const {RangePicker} = DatePicker;
   const [to, setTo] = useState({});
   const [form] = Form.useForm();
-  // const [render,setRender] = useState(false)
+
 
   const handleTo = (value,allvalues) => {
+
         // console.log(value)
         const see = value.custom_field.filter(field => typeof field === 'object');
-        // console.log(see);
+        // seType(see[0].what_to)
         const i = see.length - 1;
         if(value.length > 0){
           const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
           allvalues.custom_field[index] = see[i];
         }
        
-        // console.log(allvalues);
-       
         setTo(allvalues);
 
     }
+
+   
 
     const onRest = () => {
         form.resetFields()
         setaddIconCount(0)
     }
+
+    const options =   cols.map((item) => {
+      return <Option value={item.value}>{item.title}</Option>
+  })
  
  return ( 
   <Form initialValues={{ custom_field: [""]}} onValuesChange={handleTo}  onFinish={onFinish} form={form}  name="advance-form" style={{width:'25rem'}}> 
@@ -43,10 +94,9 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
           return (
             <>
               {fields.map((field,index) => {
-               
+              
                 let too = ((to.custom_field || [])[index] || {}).what_to || '';
-                //  console.log(index)
-                
+  
                 return (
 
                   <Form.Item key={field.key} style={{ display: 'flex', marginBottom: 2 }} align="baseline">
@@ -61,7 +111,7 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
                             // style={{style}}
                   
                         >
-                             <Select placeholder="Field">
+                             {/* <Select placeholder="Field">
                                 <Option value="organization_name">Organization name</Option>
                                 <Option value="u_name">Full Name</Option>
                                 <Option value="form_title">
@@ -73,19 +123,26 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
                                 <Option value="signup_date">Sign Up Date</Option>
                                 <Option value="form_creation_date">Form Creation Date</Option>
                                 <Option value="expiry_date">Expiry Date</Option>
+                                </Select> */}
+                                <Select placeholder="Fields">
+                                    {
+                                      options
+                                    }
                                 </Select>
                         </Form.Item>
                       </Col>
                       <Col span={10}>
                         <Form.Item
                             {...field}
-                            name={[field.name, 'value']}
+                            name={[field.value, 'value']}
                             fieldKey={[field.fieldKey, 'value']}
                             rules={[{ required: true, message: 'Required'}]}
                             noStyle
                         >
-                          {['signup_date', 'form_creation_date', 'expiry_date'].includes(too) ?
-                          <RangePicker /> : <Input  />}
+                          {/* {['signup_date', 'form_creation_date', 'expiry_date'].includes(too) ?
+                          <RangePicker /> : <Input  />} */}
+
+                          <AdvanceItems  to = {too} />
                       </Form.Item> 
                       </Col>  
                     <Col style={{display:"flex",alignItems:"center"}}>

@@ -12,6 +12,7 @@ import PreventLogout  from './PreventLogout';
 import 'antd/dist/antd.css';
 import './App.css'
 import ConfirmPayment from './pages/ConfirmPayment';
+import Debits from './pages/Debits';
 
 
 
@@ -32,6 +33,8 @@ const App = () => {
                  component={InvoiceForm} />
                 <ProtectedRouter path="/payment/invoices" 
                  component={Invoice} />
+                  <ProtectedRouter path="/payment/debits" 
+                 component={Debits} />
                   <Route path="/payment/verification/:email" component={ConfirmPayment} />
                  <Route path="*" render ={() => {
                      return(

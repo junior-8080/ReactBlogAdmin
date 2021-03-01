@@ -132,12 +132,12 @@ const Invoice = (props) => {
               onCancel={handleCancel}
               closable = {false}
               footer={[
-                <Button size="small" htmlType="button" type="primary" onClick={() => sendLink()} disabled={loading}>{email? 'Send':'Sending...'}</Button>,
+                <Button size="small" htmlType="button" type="primary" onClick={() => sendLink()} disabled={loading}>{email? 'Share':'Sending...'}</Button>,
                 <Button key="back" onClick={handleCancel} size="small" type="primary">
                   Cancel
                 </Button>
               ]}>
-                 {loading ? <p>Loading.....</p> : <><h3>Share This Link To Complete Payment Or Click To Pay</h3>
+                 {loading ? <p>Loading.....</p> : <><h3>Share This Link To Complete Payment Via Email Or Click To Pay</h3>
                   <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" onClick ={()=> handleCancel()}>{checkoutUrl}</a></>}
               </Modal>
         </div>

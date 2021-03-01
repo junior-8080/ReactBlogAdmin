@@ -86,6 +86,8 @@ const AllForms = () => {
     }
 
     const getFilter = (value) => {
+
+        console.log(value)
         let query = '';
         if(value === 'all'){
            setSearch(query);
