@@ -29,7 +29,7 @@ const Payment = (props) => {
                     </Link>
                 </Col>
                 <Col  className="payment-link">
-                    <Link to='/debits'>
+                    <Link to='/payment/debits'>
                         <img src={debits} alt="debits" className="payment-svg" />
                         <h3>View Debits</h3>
                     </Link>

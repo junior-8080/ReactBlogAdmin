@@ -111,7 +111,7 @@ const Custom = ({onFinish,handleSuffix,handleCancel,cols}) => {
                             shouldUpdate ={true}
                         >
                            <Input />
-                           {/* <AdvanceItems to ={too} cols={cols}  /> */}
+                           <AdvanceItems to ={too} cols={cols}  />
 
                       </Form.Item> 
                       </Col>  
