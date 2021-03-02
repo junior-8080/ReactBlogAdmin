@@ -1,31 +1,62 @@
 import React,{useState} from 'react';
-import { Form, Input,Select,DatePicker, Col,Row,Button } from 'antd';
+import { Form, Input,Select,DatePicker, Col,Row,Button,InputNumber } from 'antd';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
 
 import '../App.css';
 
 
-const Custom = ({onFinish,handleSuffix,handleCancel}) => {
+
+
+
+
+const AdvanceItems = ({to,cols}) => {
+
+  
+  const result = cols.find(obj => {
+    return obj.value ===  to
+  });
+
+  if(to === "" || to === {}){
+    return <Input />
+  }
+
+ if(result.type === "text" ){
+   return <Input />
+ }
+
+ if(result.type === "number"){
+   return <InputNumber />
+ }
+ if(result.type === "date"){
+   return <DatePicker.RangePicker />
+ }
+
+  return <Input />
+
+}
+
+
+
+
+
+const Custom = ({onFinish,handleSuffix,handleCancel,cols}) => {
 
   const [addIconCount, setaddIconCount] = useState(0);
   const{Option} = Select;
-  const {RangePicker} = DatePicker;
   const [to, setTo] = useState({});
   const [form] = Form.useForm();
-  // const [render,setRender] = useState(false)
+  
 
   const handleTo = (value,allvalues) => {
-        // console.log(value)
         const see = value.custom_field.filter(field => typeof field === 'object');
-        // console.log(see);
         const i = see.length - 1;
         if(value.length > 0){
           const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
           allvalues.custom_field[index] = see[i];
         }
-       
-        // console.log(allvalues);
-       
+
+        console.log(allvalues)
+        console.log(value)
         setTo(allvalues);
 
     }
@@ -45,8 +76,7 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
               {fields.map((field,index) => {
                
                 let too = ((to.custom_field || [])[index] || {}).what_to || '';
-                //  console.log(index)
-                
+              
                 return (
 
                   <Form.Item key={field.key} style={{ display: 'flex', marginBottom: 2 }} align="baseline">
@@ -59,20 +89,15 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
                             rules={[{ required: true, message: 'Required' }]}
                             noStyle
                             // style={{style}}
+
                   
                         >
                              <Select placeholder="Field">
-                                <Option value="organization_name">Organization name</Option>
-                                <Option value="u_name">Full Name</Option>
-                                <Option value="form_title">
-                                    Form Title
-                                </Option>
-                                <Option value="signup_country">
-                                    Country
-                                </Option>
-                                <Option value="signup_date">Sign Up Date</Option>
-                                <Option value="form_creation_date">Form Creation Date</Option>
-                                <Option value="expiry_date">Expiry Date</Option>
+                                  {
+                                    cols.map(item => {
+                                      return <Option value={item.value} key={item.value}>{item.title}</Option>
+                                    })
+                                  }
                                 </Select>
                         </Form.Item>
                       </Col>
@@ -83,9 +108,11 @@ const Custom = ({onFinish,handleSuffix,handleCancel}) => {
                             fieldKey={[field.fieldKey, 'value']}
                             rules={[{ required: true, message: 'Required'}]}
                             noStyle
+                            shouldUpdate ={true}
                         >
-                          {['signup_date', 'form_creation_date', 'expiry_date'].includes(too) ?
-                          <RangePicker /> : <Input  />}
+                           <Input />
+                           {/* <AdvanceItems to ={too} cols={cols}  /> */}
+
                       </Form.Item> 
                       </Col>  
                     <Col style={{display:"flex",alignItems:"center"}}>

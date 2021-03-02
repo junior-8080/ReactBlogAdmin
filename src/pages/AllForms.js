@@ -11,6 +11,49 @@ import Advance from '../components/Advance';
 import Filter from '../components/Filter';
 
 
+const cols = [
+    {
+        title:"Organization Name",
+        type:"text",
+        value:"organization_name"
+    },
+    {
+        title:"Full Name",
+        type:"text",
+        value:"u_name"
+
+    },
+    {
+        title:"Form Title",
+        type:"text",
+        value:"form_title"
+
+    },
+    {
+        title:"SignUp Country",
+        type:"text",
+        value:"country"
+
+    },
+    {
+        title:"SignUp Date",
+        type:"date",
+        value:"signup_date"
+
+    },
+    {
+        title:"Form Creation Date",
+        type:"date",
+        value:"form_creation_date"
+    },
+    {
+        title:"Expiry Date",
+        type:"date",
+        value:"expiry date"
+    }
+]
+
+
 const {Search} = Input;
 
 
@@ -28,7 +71,7 @@ const AllForms = () => {
 
 
     const onFinish = (values) => { 
-        // console.log(values);
+        console.log(values);
         handleSuffix();
         let query = '';
         
@@ -86,6 +129,8 @@ const AllForms = () => {
     }
 
     const getFilter = (value) => {
+
+        // console.log(value)
         let query = '';
         if(value === 'all'){
            setSearch(query);
@@ -123,7 +168,7 @@ const AllForms = () => {
                     {/* <h4 style={{marginBottom:5}}  >Search</h4> */}
                     <p style={{color:'#000',fontSize:10,margin:0}}>Select the fields you want the search to be refined according</p>
                 </div>
-                <Advance  onFinish = {onFinish} handleSuffix={handleSuffix} handleCancel={handleCancel}   />
+                <Advance  onFinish = {onFinish} handleSuffix={handleSuffix} handleCancel={handleCancel}  cols={cols} />
               </>
            )
       }
