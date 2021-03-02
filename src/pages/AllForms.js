@@ -32,7 +32,7 @@ const cols = [
     {
         title:"SignUp Country",
         type:"text",
-        value:"country"
+        value:"signup_country"
 
     },
     {
@@ -71,20 +71,15 @@ const AllForms = () => {
 
 
     const onFinish = (values) => { 
-        console.log(values);
         handleSuffix();
         let query = '';
         
         values.custom_field.forEach((field) => {
-            // console.log(field)
             query+= `${field.what_to}=${field.value}&`
 
         });
-
-        // console.log(query)
         setSearch(query);
         setPage(1);
-        // setShowForm(false);
         setIsModalVisible(!isModalVisible)
     }
 
@@ -114,12 +109,11 @@ const AllForms = () => {
 
     }, [page,search]);
 
+
     const handleSuffix = () => {
-        
         setSuffixUp(!suffixUp)
         setIsModalVisible(!isModalVisible);
-     
-        
+
     }
 
     const getPage = (value) => {
@@ -130,7 +124,6 @@ const AllForms = () => {
 
     const getFilter = (value) => {
 
-        // console.log(value)
         let query = '';
         if(value === 'all'){
            setSearch(query);

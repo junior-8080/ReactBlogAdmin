@@ -9,29 +9,89 @@ import '../App.css';
 
 
 
-const AdvanceItems = ({to,cols}) => {
+const AdvanceItems = ({to,cols,field}) => {
 
   
   const result = cols.find(obj => {
     return obj.value ===  to
   });
 
-  if(to === "" || to === {}){
-    return <Input />
+    if(to === "" || to === {}){
+      return    <Form.Item
+        {...field}
+          name={[field.name, 'value']}
+          fieldKey={[field.fieldKey, 'value']}
+          rules={[{ required: true, message: 'Required'}]}
+          noStyle
+          shouldUpdate ={true}
+      >
+        <Input />    
+      </Form.Item> 
+    }
+
+  if(result.type === "text" ){
+    return    <Form.Item
+    {...field}
+      name={[field.name, 'value']}
+      fieldKey={[field.fieldKey, 'value']}
+      rules={[{ required: true, message: 'Required'}]}
+      noStyle
+      shouldUpdate ={true}
+  >
+    <Input />    
+  </Form.Item> 
   }
 
- if(result.type === "text" ){
-   return <Input />
- }
+  if(result.type === "number"){
+    return    <Form.Item
+      {...field}
+      name={[field.name, 'value']}
+      fieldKey={[field.fieldKey, 'value']}
+      rules={[{ required: true, message: 'Required'}]}
+      noStyle
+      shouldUpdate ={true}
+  >
+    <InputNumber />    
+  </Form.Item> 
+  }
+  if(result.type === "date"){
+    return    <Form.Item
+      {...field}
+      name={[field.name, 'value']}
+      fieldKey={[field.fieldKey, 'value']}
+      rules={[{ required: true, message: 'Required'}]}
+      noStyle
+      shouldUpdate ={true}
+  >
+    <DatePicker.RangePicker />    
+  </Form.Item>
 
- if(result.type === "number"){
-   return <InputNumber />
- }
- if(result.type === "date"){
-   return <DatePicker.RangePicker />
- }
+  }
 
-  return <Input />
+  if(result.type === "select"){
+
+    
+    const items =   result.options.map(item => {
+        return <Select.Option key={item.value} value={item.value}>{item.Title}</Select.Option>
+      })
+    
+
+    return    <Form.Item
+      {...field}
+      name={[field.name, 'value']}
+      fieldKey={[field.fieldKey, 'value']}
+      rules={[{ required: true, message: 'Required'}]}
+      noStyle
+      // shouldUpdate ={true}
+    >
+       <Select>
+          {
+            items
+          }
+      </Select>   
+   </Form.Item>
+  }
+
 
 }
 
@@ -39,10 +99,9 @@ const AdvanceItems = ({to,cols}) => {
 
 
 
-const Custom = ({onFinish,handleSuffix,handleCancel,cols}) => {
+const Custom = ({onFinish,handleCancel,cols}) => {
 
   const [addIconCount, setaddIconCount] = useState(0);
-  const{Option} = Select;
   const [to, setTo] = useState({});
   const [form] = Form.useForm();
   
@@ -95,25 +154,14 @@ const Custom = ({onFinish,handleSuffix,handleCancel,cols}) => {
                              <Select placeholder="Field">
                                   {
                                     cols.map(item => {
-                                      return <Option value={item.value} key={item.value}>{item.title}</Option>
+                                      return <Select.Option value={item.value} key={item.value}>{item.title}</Select.Option>
                                     })
                                   }
                                 </Select>
                         </Form.Item>
                       </Col>
                       <Col span={10}>
-                        <Form.Item
-                            {...field}
-                            name={[field.name, 'value']}
-                            fieldKey={[field.fieldKey, 'value']}
-                            rules={[{ required: true, message: 'Required'}]}
-                            noStyle
-                            shouldUpdate ={true}
-                        >
-                           <Input />
-                           <AdvanceItems to ={too} cols={cols}  />
-
-                      </Form.Item> 
+                                  <AdvanceItems to={too} cols={cols} field ={field} />
                       </Col>  
                     <Col style={{display:"flex",alignItems:"center"}}>
                    { index > 0 ? <MinusCircleOutlined
