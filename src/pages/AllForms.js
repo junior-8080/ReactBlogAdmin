@@ -130,11 +130,7 @@ const AllForms = () => {
 
     const getFilter = (value) => {
 
-<<<<<<< HEAD
         // console.log(value)
-=======
-        console.log(value)
->>>>>>> advance
         let query = '';
         if(value === 'all'){
            setSearch(query);
