@@ -37,6 +37,9 @@ const InvoiceForm = () => {
                 }           
                
             })
+            .catch(err => {
+                message.error('Error Occured While Performing Action')
+            })
     }
     return (
         <Row style={{height:'100vh'}}>

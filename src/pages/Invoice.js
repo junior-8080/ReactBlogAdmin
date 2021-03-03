@@ -1,15 +1,16 @@
 import React,{useState,useEffect} from 'react';
 import InvoiceTable from '../components/InvoiceTable';
 import {Button, message, Modal,Popover,Input}  from 'antd';
-import {SyncOutlined,UpOutlined,DownOutlined} from '@ant-design/icons';
+import {UpOutlined,DownOutlined} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Advance  from '../components/Advance';
+import Actions from '../components/Actions';
 
 
 
-const Invoice = (props) => {
+const Invoice = () => {
     
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState([]);
     const [isLoading, setLoading] = useState(false);
     const [loading, setloading] = useState(false);
     const [refresh,setFresh] =useState(false)
@@ -41,21 +42,21 @@ const Invoice = (props) => {
             title:"Invoice Source",
             type:"select",
             value:"invoiceSource",
-            options: [{title:"INSTY",value:"INSTY"},{title:"PUSH",value:"DFS"}]
+            options: [{title:"Insyt",value:"INSTY"},{title:"Push",value:"DFS"}]
     
         },
         {
             title:"Currency",
             type:"select",
             value:"currency",
-            options: [{title:"DOLLARS",value:"USD"},{title:"CEDIS",value:"GHS"}]
+            options: [{title:"Dollars",value:"USD"},{title:"Cedis",value:"GHS"}]
     
         },
         {
             title:"Staus",
             type:"select",
             value:"status",
-            options: [{title:"PROCESSING",value:"processing"},{title:"SUCCESS",value:"success"},{title:"FAIL",value:"failed"}]
+            options: [{title:"Processing",value:"processing"},{title:"Paild",value:"paid"},{title:"Failed",value:"failed"}]
     
         },
         {
@@ -81,6 +82,7 @@ const Invoice = (props) => {
 
         setFilter(query)
         setPop(!ispopVisible)
+        handleSuffix()
     }
 
     const showModal = () => {
@@ -103,7 +105,7 @@ const Invoice = (props) => {
 
     useEffect(() => {
         
-        const url = `http://payments.qa.esoko.com:9099/v1/invoices/?${filter}pageSize=100page=${page}&order=asc`;
+        const url = `http://payments.qa.esoko.com:9099/v1/invoices/?${filter}pageSize=100&page=${page}&order=asc`;
         setLoading(true)
         fetch(url)
         .then(res =>  res.json())
@@ -115,7 +117,11 @@ const Invoice = (props) => {
             setLoading(false);
             
         })
+        .catch(err => {
+            message.error('Error Occured While Performing Action',6)
+        })
     },[page,refresh,filter])
+    
 
     const onChange = (values) => {
         setLoading(true)
@@ -148,12 +154,52 @@ const Invoice = (props) => {
             }
             
         })
+        .catch(err => message.error(''))
     }
     
     const handleDelete = (key) => {
+        
+        fetch(`http://payments.qa.esoko.com:9099/v1/invoices/${key}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(result => {
+            if(result.code === 200 && result.status === 'SUCCESS'){
+                 message.success('Inovice deleted')
+                 setFresh(!refresh)
+            }
+            
+        })
+        .catch(err => {
+            if(err.code === 500){
+                message.error('Error Occured While Performing Action',6)
+            }
+        })
 
-        const data = [...result];
-        setResult(data.filter((record) => record.invoiceRef !== key))
+        // const data = [...result];
+        // setResult(data.filter((record) => record.invoiceRef !== key))
+    }
+
+    const handleExport = () => {
+        message.info('Exporting....')
+        fetch(`/payment/download?pageSize=${total}&filter=${filter}&url=invoice`)
+        .then(res => res.json())
+        .then(result => {
+            if(result.statusCode === 200 && result.message === 'success'){
+
+                window.open(result.data.downloadUrl,'_blank')
+                
+            }
+            
+        })
+        .catch(err => {
+            if(err.code === 500){
+                message.error('Error Occured While Performing Action',6)
+            }
+        })
     }
 
     const sendLink = () => {
@@ -178,6 +224,11 @@ const Invoice = (props) => {
             }
             
         })
+        .catch(err => {
+            if(err.code === 500){
+                message.error('Error Occured While Performing Action',6)
+            }
+        })
 
     }
 
@@ -189,7 +240,7 @@ const Invoice = (props) => {
                  {/* <h4 style={{marginBottom:5}}  >Search</h4> */}
                  <p style={{color:'#000',fontSize:10,margin:0}}>Select the fields you want the search to be refined according</p>
              </div>
-             <Advance  onFinish = {onFinish}  handleCancel={handlePopover}  cols={cols} />
+             <Advance  onFinish = {onFinish}  handleCancel={handlePopover}  cols={cols}  handleSuffix={handleSuffix}/>
            </>
         )
    }
@@ -203,7 +254,7 @@ const Invoice = (props) => {
         <div  className="invoice-table">
             <div style={{display:"flex",justifyContent:"space-between"}}>
                <Link to="/payment/invoice">Create Invoice</Link>
-               <h3>INVOICES</h3>
+               <h3 className="page-title">INVOICES</h3>
                <div style={{display:"flex",marginBottom:"5px"}}>
                 <Popover
                             content={content}
@@ -216,14 +267,13 @@ const Invoice = (props) => {
                         >
                            <div style={{padding:"10px",visibility:"hidden"}}></div>
                     </Popover>
-
-                    <Button icon={<SyncOutlined  />} style={{marginRight:"1em"}} onClick = {() => {setFresh(!refresh)}}>Refresh</Button>
                      <Input.Search placeholder="Search By Email"suffix= {suffixUp ?<UpOutlined    onClick ={handleSuffix} size="small"/> : <DownOutlined   onClick ={handleSuffix} /> } 
                          style={{marginRight:'1em'}}
                           value={searchValue}  onChange= {(event) =>{ searchValue !== event.target.value && setAllSearch(event.target.value)}}
                           onSearch = {() => setFilter(`customerEmail=${searchValue}&`) }
                     />
-                    <Button onClick={() => setFilter("")}>Reset</Button>
+                    <Actions  handleRefresh = { () => setFresh(!refresh)} handleReset = {() => setFilter("")} handleExport ={handleExport} />
+                      
                </div>
             </div>
 
@@ -248,7 +298,7 @@ const Invoice = (props) => {
                   Cancel
                 </Button>
               ]}>
-                 {loading ? <p>Loading.....</p> : <><h3>Share This Link To Complete Payment Via Email Or Click To Pay</h3>
+                 {loading ? <p>Loading.....</p> : <><h3 style={{color:"#f8d568"}}>Share This Link To Complete Payment Via Email Or Click To Pay</h3>
                   <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" onClick ={()=> handleCancel()}>{checkoutUrl}</a></>}
               </Modal>
         </div>

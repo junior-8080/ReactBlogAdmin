@@ -81,7 +81,7 @@ const InvoiceTable = ({dataSource,getValues,total,currentPage,isLoading,chunck,h
             render: (text, record) =>{
                 // console.log(record)
 
-                if(dataSource.length > 0  && record.status  !== 'paid') {
+                if(dataSource.length > 0  && (record.status  !== 'paid'  && record.status !== 'cancelled')) {
            return <>
                 <Popconfirm title="Are You Sure ?" onConfirm={() => handlePaid(record.invoiceRef,record.customerEmail)}
                     okText="Yes" cancelText="No" placement="topRight" okButtonProps={{size:"small",type:"primary"}}

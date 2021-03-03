@@ -1,14 +1,15 @@
 import React,{useState,useEffect} from 'react';
-import {Table,Popover,Button,Input} from 'antd';
+import {Table,Popover,Input,message} from 'antd';
 import moment from 'moment';
-import {SyncOutlined,UpOutlined,DownOutlined} from '@ant-design/icons';
+import {UpOutlined,DownOutlined} from '@ant-design/icons';
 import {addZeroes,numberWithCommas}  from '../utils';
 import Advance from '../components/Advance';
 import {Link} from 'react-router-dom';
+import Actions from '../components/Actions';
 
 const Debits = () => {
 
-    const [debits, setDebits] = useState(null);
+    const [debits, setDebits] = useState([]);
     const [isLoading, setLoading] = useState(false);
     const [refresh,setFresh] =useState(false)
     const [page,setPage]= useState(1); 
@@ -110,6 +111,11 @@ const Debits = () => {
             setLoading(false);
             
         })
+        .catch(err => {
+            if(err.code === 500){
+                message.error('Error Occured While Performing Action',6)
+            }
+        })
     },[page,refresh,filter])
 
     const onChange = (value) => {
@@ -137,6 +143,26 @@ const Debits = () => {
     
     }
 
+    const handleExport = () => {
+        message.info('Exporting....')
+        fetch(`/payment/download?pageSize=${total}&filter=${filter}&url=debit`)
+        .then(res => res.json())
+        .then(result => {
+            if(result.statusCode === 200 && result.message === 'success'){
+
+                window.open(result.data.downloadUrl,'_blank')
+                // message.info('Exporting....')
+            }
+            
+        })
+        .catch(err => {
+            if(err.code === 500){
+                message.error('Error Occured While Performing Action',6)
+            }
+        })
+        
+    }
+
     const content = ()  => {
 
         return (
@@ -144,7 +170,7 @@ const Debits = () => {
               <div>
                  <p style={{color:'#000',fontSize:10,margin:0}}>Select the fields you want the search to be refined according</p>
              </div>
-             <Advance  onFinish = {onFinish}  handleCancel={handlePopover}  cols={cols} />
+             <Advance  onFinish = {onFinish}  handleCancel={handlePopover}  cols={cols} handleSuffix={handleSuffix} />
            </>
         )
    }
@@ -155,7 +181,7 @@ const Debits = () => {
         <div  className="invoice-table">
              <div style={{display:"flex",justifyContent:"space-between"}}>
              <Link to="/payment/invoices">Invoices</Link>
-               <h3>DEBITS</h3>
+               <h3 className="page-title">DEBITS</h3>
                <div style={{display:"flex",marginBottom:"5px"}}>
                 <Popover
                             content={content}
@@ -169,13 +195,13 @@ const Debits = () => {
                            <div style={{padding:"10px",visibility:"hidden"}}></div>
                     </Popover>
 
-                    <Button icon={<SyncOutlined  />} style={{marginRight:"1em"}} onClick = {() => {setFresh(!refresh)}}>Refresh</Button>
+                    {/* <Button icon={<SyncOutlined  />} style={{marginRight:"1em"}} onClick = {() => {setFresh(!refresh)}}>Refresh</Button> */}
                      <Input.Search placeholder="Search By Email"suffix= {suffixUp ?<UpOutlined    onClick ={handleSuffix} size="small"/> : <DownOutlined   onClick ={handleSuffix} /> } 
                          style={{marginRight:'1em'}}
                           value={searchValue}  onChange= {(event) =>{ searchValue !== event.target.value && setAllSearch(event.target.value)}}
                           onSearch = {() => setFilter(`customerEmail=${searchValue}&`) }
                     />
-                    <Button onClick={() => setFilter("")}>Reset</Button>
+                     <Actions  handleRefresh = { () => setFresh(!refresh)} handleReset = {() => setFilter("")} handleExport ={handleExport} />
                </div>
             </div>
             

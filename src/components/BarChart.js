@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {Card,DatePicker, Button,Form}
+import {Card,DatePicker, Button,Form,message}
  from "antd";
 import moment from 'moment';
 import {BarChartOutlined,SearchOutlined} from '@ant-design/icons';
@@ -26,6 +26,11 @@ const BarChart= ({title,path,bottom}) => {
         .then(result => {
             setDate(date)
             setData(result.data)
+        })
+        .catch(err => {
+          if(err){
+            message.error('Error Occured While Performing Action')
+          }
         })
       },[date,path])
       

@@ -313,3 +313,8 @@ option::placeholder {
 
   }
 }
+
+.page-title {
+  text-transform: uppercase;
+  color: #04142b;
+}

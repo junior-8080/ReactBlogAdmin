@@ -80,6 +80,7 @@ const Signin = (props) => {
                 setIsLoading(false);
 
             })
+            .catch(err => message.error('Error Occured While Performing Action'))
             
     }
 

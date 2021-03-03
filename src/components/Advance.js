@@ -63,18 +63,29 @@ const AdvanceItems = ({to,cols,field}) => {
       noStyle
       shouldUpdate ={true}
   >
+    <DatePicker />    
+  </Form.Item>
+
+
+  }
+
+  if(result.type === "date-range"){
+    return    <Form.Item
+      {...field}
+      name={[field.name, 'value']}
+      fieldKey={[field.fieldKey, 'value']}
+      rules={[{ required: true, message: 'Required'}]}
+      noStyle
+      shouldUpdate ={true}
+  >
     <DatePicker.RangePicker />    
   </Form.Item>
+  
 
   }
 
   if(result.type === "select"){
 
-    
-    const items =   result.options.map(item => {
-        return <Select.Option key={item.value} value={item.value}>{item.Title}</Select.Option>
-      })
-    
 
     return    <Form.Item
       {...field}
@@ -86,7 +97,10 @@ const AdvanceItems = ({to,cols,field}) => {
     >
        <Select>
           {
-            items
+              result.options.map(item => {
+              return <Select.Option key={item.value} value={item.value}>{item.title}</Select.Option>
+            })
+          
           }
       </Select>   
    </Form.Item>
@@ -99,7 +113,7 @@ const AdvanceItems = ({to,cols,field}) => {
 
 
 
-const Custom = ({onFinish,handleCancel,cols}) => {
+const Custom = ({onFinish,handleCancel,cols,handleSuffix}) => {
 
   const [addIconCount, setaddIconCount] = useState(0);
   const [to, setTo] = useState({});
@@ -113,9 +127,6 @@ const Custom = ({onFinish,handleCancel,cols}) => {
           const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
           allvalues.custom_field[index] = see[i];
         }
-
-        console.log(allvalues)
-        console.log(value)
         setTo(allvalues);
 
     }
@@ -188,8 +199,8 @@ const Custom = ({onFinish,handleCancel,cols}) => {
       </Form.List>
       <Form.Item style={{fontSize:12,marginBottom:0}}>
               <Button htmlType="submit" size="small"  type="primary" style={{fontSize:12,marginTop:"30px",marginRight:10}}>Submit</Button>
-             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer"}} onClick={() => handleCancel()}>Cancel</span>
-             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer",marginLeft:"5px"}} onClick={onRest}>Reset</span>
+             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer"}} onClick={() => {handleCancel();handleSuffix()}}>Cancel</span>
+             <span  style={{marginTop:"10px",color:"#1890ff",cursor:"pointer",marginLeft:"5px"}} onClick={onRest}>Clear All</span>
       </Form.Item>
     </Form>
   );

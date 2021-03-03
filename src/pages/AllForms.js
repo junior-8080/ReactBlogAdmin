@@ -3,10 +3,9 @@ import TableRecords from '../components/TableRecords';
 import {
     message,
     Popover,
-    Button,
     Input
 } from 'antd';
-import {DownOutlined,UpOutlined,SyncOutlined} from '@ant-design/icons';
+import {DownOutlined,UpOutlined} from '@ant-design/icons';
 import Advance from '../components/Advance';
 import Filter from '../components/Filter';
 
@@ -37,13 +36,13 @@ const cols = [
     },
     {
         title:"SignUp Date",
-        type:"date",
+        type:"date-range",
         value:"signup_date"
 
     },
     {
         title:"Form Creation Date",
-        type:"date",
+        type:"date-range",
         value:"form_creation_date"
     },
     {
@@ -174,9 +173,10 @@ const AllForms = () => {
         <div className="record-table">
             <div style={{width:"100%",display:"flex",justifyContent:"space-between",marginBottom:'5px'}}>
                 <div></div>
+                <h3 className="page-title">Forms</h3>
                 <div style={{display:"flex"}}>
                
-                    <Button onClick={() => getFilter('all')} icon={<SyncOutlined  />} size="middle" style={{fontSize:'small'}}>Refresh</Button>
+                    {/* <Button onClick={() => getFilter('all')} icon={<SyncOutlined  />} size="middle" style={{fontSize:'small'}}>Refresh</Button> */}
                     <Popover
                             content={content}
                             title="Advance Search"
@@ -190,7 +190,7 @@ const AllForms = () => {
                             <div style={{padding:"10px",visibility:"hidden"}}></div>
                     </Popover>
                     <Search suffix= {suffixUp ?<UpOutlined    onClick ={handleSuffix} size="small"/> : <DownOutlined   onClick ={handleSuffix}size="small" /> } 
-                         style={{marginRight:'1em'}}
+                         style={{marginRight:'1em'}} placeholder="Search..."
                          onSearch = {handleSearch} size="small" value={searchValue}  onChange= {(event) =>{ searchValue !== event.target.value && setAllSearch(event.target.value)}} />
               
                 <Filter getFilter={getFilter}  />
