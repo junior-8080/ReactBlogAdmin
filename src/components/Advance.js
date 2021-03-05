@@ -38,7 +38,7 @@ const AdvanceItems = ({to,cols,field}) => {
       noStyle
       shouldUpdate ={true}
   >
-    <Input />    
+    <Input  />    
   </Form.Item> 
   }
 
@@ -51,7 +51,7 @@ const AdvanceItems = ({to,cols,field}) => {
       noStyle
       shouldUpdate ={true}
   >
-    <InputNumber />    
+    <InputNumber style={{width:"100%"}} />    
   </Form.Item> 
   }
   if(result.type === "date"){
@@ -78,7 +78,7 @@ const AdvanceItems = ({to,cols,field}) => {
       noStyle
       shouldUpdate ={true}
   >
-    <DatePicker.RangePicker />    
+    <DatePicker.RangePicker  />    
   </Form.Item>
   
 
@@ -86,14 +86,14 @@ const AdvanceItems = ({to,cols,field}) => {
 
   if(result.type === "select"){
 
-
     return    <Form.Item
       {...field}
       name={[field.name, 'value']}
       fieldKey={[field.fieldKey, 'value']}
       rules={[{ required: true, message: 'Required'}]}
       noStyle
-      // shouldUpdate ={true}
+      shouldUpdate ={true}
+    
     >
        <Select>
           {
@@ -111,8 +111,6 @@ const AdvanceItems = ({to,cols,field}) => {
 
 
 
-
-
 const Custom = ({onFinish,handleCancel,cols,handleSuffix}) => {
 
   const [addIconCount, setaddIconCount] = useState(0);
@@ -122,13 +120,16 @@ const Custom = ({onFinish,handleCancel,cols,handleSuffix}) => {
 
   const handleTo = (value,allvalues) => {
         const see = value.custom_field.filter(field => typeof field === 'object');
+        // console.log(see)
         const i = see.length - 1;
-        if(value.length > 0){
+        if(see[0].what_to){
           const index = allvalues.custom_field.findIndex(x => x.what_to === see[i].what_to);
-          allvalues.custom_field[index] = see[i];
+          if(allvalues.custom_field[index].value){
+            allvalues.custom_field[index].value = ""
+          }
+         
         }
         setTo(allvalues);
-
     }
 
     const onRest = () => {
