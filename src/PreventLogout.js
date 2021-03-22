@@ -11,7 +11,7 @@ const PreventLogout = ({component:Component,...rest}) => {
                 if(isLogin){
                     return (
                         <Redirect    to={{
-                            pathname:"/overview",
+                            pathname:"/articles",
                             state:{
                                 from:props.location.pathname
                             }

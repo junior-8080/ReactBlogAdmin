@@ -1,5 +1,5 @@
 export const authzation = () => {
-    const getAouth = JSON.parse (localStorage.getItem('userProfile')) ;
+    const getAouth = JSON.parse (localStorage.getItem('profile')) ;
     if(getAouth){
         return true
     }
