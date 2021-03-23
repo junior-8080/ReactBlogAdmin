@@ -1,6 +1,7 @@
 import React from 'react'
 import{ Link} from 'react-router-dom'
 import { Menu, Button } from 'antd';
+import {ProfileOutlined,FolderOpenOutlined}  from '@ant-design/icons'
 
 
 
@@ -12,23 +13,41 @@ const SideBar = ({handleVisibility}) => {
         window.location = '/'
     }
 
+    const btnStyle = {
+        width:"90%",
+        backgroundColor:"#a4508b",
+        marginTop:"1em",
+        color:"#fff",
+        border:"none"
+    }
+    const style = {
+         textAlign:"center",
+         marginTop:"60vh",
+        
+    }
+
    
     return (
         <div className="sideBar" >
             <Menu
               mode="inline"
               theme="dark"
-              style={{height:'100vh',backgroundColor:'burlywood',color:'#000'}}
+              style={{height:'100vh',backgroundColor: "#a4508b",backgroundImage:"linear-gradient(326deg, #a4508b 0%, #5f0a87 74%)",color:'#000'}}
               defaultSelectedKeys={['1']}>
                 <Menu.Item className="newPost" key="1">
-                    <Link to='/articles'>Articles</Link>
+                 <Link to='/articles'><FolderOpenOutlined /> Articles</Link>
                 </Menu.Item>
-                <Menu.Item  onClick = {handleVisibility} key="2">
+                <Menu.Item className="newPost" key="2" disabled={true}>
+                <Link to='/articles'><ProfileOutlined /> Images</Link>
+                </Menu.Item>
+                <div style={style}>
+                 <Button  onClick = {handleVisibility} style={btnStyle} >
                      Create Article
-                </Menu.Item>
-                <Menu.Item className="newPost" onClick = {logout} key="3">
+                 </Button>
+                 <Button className="newPost" onClick = {logout}  style={btnStyle}>
                     logout
-                </Menu.Item>
+                 </Button>
+               </div>
             </Menu>
         </div>
     );

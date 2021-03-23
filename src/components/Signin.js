@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {LoadingOutlined,FundOutlined} from '@ant-design/icons'
+import {LoadingOutlined} from '@ant-design/icons'
 import {Form, Input, Button, message,Row,Col} from 'antd';
 
 
@@ -87,7 +87,7 @@ const Signin = () => {
                         style={{
                         color: "#001529",
                         textAlign: "center"
-                    }}>MY BLOG ADMIN NEXT JS
+                    }}>SIGNIN
                     </h4>
                     <Form.Item
                         label="Username"

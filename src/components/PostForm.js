@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import {Editor} from 'react-draft-wysiwyg'
 import { EditorState,ContentState,convertFromHTML} from 'draft-js';
 import { Button, message } from 'antd';
@@ -52,6 +52,8 @@ const PostForm = ({postId,article}) => {
         }
       })
     }
+
+
     
     return (
       <>
@@ -63,7 +65,9 @@ const PostForm = ({postId,article}) => {
           onEditorStateChange={handleChange}
           placeholder="The message goes here..."
         />
-          <Button onClick={handleSave}>Save</Button>
+        <div className="save">
+           <Button onClick={handleSave}>Save</Button>
+        </div>
         </>
 
         )

@@ -1,8 +1,7 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import { authzation } from './auth';
-import {Row,Col} from 'antd';
-// import Navs from './components/Navbar';
+
 
 
 

@@ -29,7 +29,7 @@ const ArticlesTable= () => {
     },[]);
 
     const genExtra = (id) => (
-          <Link  to={`/articles/${id}`}>View</Link>
+          <Link  to={`/articles/${id}`} className="view">View</Link>
         
       );
 
@@ -75,7 +75,6 @@ const ArticlesTable= () => {
             {profile ? <div className ="accountDetails">
                  <h3>Account</h3>
                  <div className="accountDetails">
-                    <h3>Article Details</h3>
                     <div>
                         <p>Name: </p>
                         <p>{profile.name}</p>

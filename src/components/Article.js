@@ -1,8 +1,11 @@
 import React,{ useEffect } from 'react'
-import {Row,Col,message} from 'antd';
+import {Button, Col,message} from 'antd';
 import AdminLayout from './AdminLayout'
 import PostForm from './PostForm';
 import { useState } from 'react';
+import {aboutExpireFormat} from '../utils'
+import {ArrowLeftOutlined}from '@ant-design/icons'
+import { Link } from 'react-router-dom';
 
 
 
@@ -31,14 +34,23 @@ const Article = ({id}) => {
         })
      },[id])
 
+     const btnStyle = {
+        backgroundColor:"#5f0a87",
+        marginTop:".5em",
+        marginBottom:".5em",
+        color:"#fff",
+        border:"none"
+    }
+
     return (
         <AdminLayout>
            {loading ? <Col span={16} className="loading"><p>Loading...</p></Col> : <Col span ={16}>
+             <Link to="/articles"><Button icon={<ArrowLeftOutlined />} size="small" style={btnStyle}>Back</Button></Link> 
               <PostForm  article = {article} postId = {article._id} />
             </Col>}
             <Col span={4} className="adminRigth">
                 <div className="accountDetails">
-                    <div>
+                  <div>
                     <h3>Article Details</h3>
                     {/* <hr /> */}
                     <div>
@@ -47,7 +59,7 @@ const Article = ({id}) => {
                     </div>
                     <div>
                         <p>Date Created :</p>
-                        <p>{article.dateCreated}</p>
+                        <p>{aboutExpireFormat(article.dateCreated)}</p>
                     </div>
                     <div>
                         <p>Status :</p>
