@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.6.6",
     "axios": "^0.21.1",
+    "dotenv": "^16.0.1",
     "draft-convert": "^2.1.10",
     "draft-js": "^0.11.7",
     "draft-js-import-html": "^1.4.1",

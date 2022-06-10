@@ -1,4 +1,3 @@
-
 .page {
   height: 100vh;
 }
@@ -8,34 +7,33 @@
   width: 200px;
 }
 .newPost {
-  color:#000;
+  color: #000;
 }
 
-.postDetails{
+.postDetails {
   height: 45vh;
 }
-.accountDetails{
+.accountDetails {
   background-color: #a4508b;
-  color:#fff;
-  border-radius: .5em;
-  padding:.5em;
+  color: #fff;
+  border-radius: 0.5em;
+  padding: 0.5em;
 }
-.adminRigth,.accountDetails h3 {
+.adminRigth,
+.accountDetails h3 {
   background-color: #a4508b;
   background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
-  padding:1em;
-  color:#fff;
-
+  padding: 1em;
+  color: #fff;
 }
-.stepsContent{
+.stepsContent {
   margin-top: 1em;
 }
-.helper{
+.helper {
   font-size: small;
   color: grey;
 }
 .signin {
-
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -43,10 +41,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  background-size:cover;
+  background-size: cover;
 }
-.details{
-  padding:1em;
+.details {
+  padding: 1em;
   background-color: green;
 }
 .loading {
@@ -58,31 +56,31 @@
 
 div.DraftEditor-editorContainer,
 div.public-DraftEditor-content {
-  height: 70vh
+  height: 70vh;
 }
 
-.save{
-  display:flex;
-  justify-content: center;
-}
-.save  button{
-  background-color:#5f0a87 ;
-  border:none;
-  color:white;
+.save {
   display: flex;
   justify-content: center;
-  width:20%;
+}
+.save button {
+  background-color: #5f0a87;
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 20%;
 }
 .save button:hover {
-  background-color:#a4508b ;
-  color:#fff
+  background-color: #a4508b;
+  color: #fff;
 }
 .view {
-  color:#a4508b;
+  color: #a4508b;
 }
-.view:hover{
-  color:#5f0a87
+.view:hover {
+  color: #5f0a87;
 }
-.ant-form label{
-  color:#fff;
+.ant-form label {
+  color: #fff;
 }
