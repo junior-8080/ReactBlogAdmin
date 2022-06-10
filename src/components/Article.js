@@ -15,7 +15,7 @@ const Article = ({ id }) => {
 
   useEffect(() => {
     isLoading(true);
-    fetch(`${REATC_APP_API_BASE_URL}/posts/${id}`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode === 200 && data.message === "SUCCESS") {

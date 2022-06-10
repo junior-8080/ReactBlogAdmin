@@ -21,7 +21,7 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
       title: name,
       description: summary,
     };
-    fetch(`${REACT_APP_API_BASE_URL}/posts`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

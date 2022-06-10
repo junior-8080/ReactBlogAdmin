@@ -9,7 +9,7 @@ const ArticlesTable = () => {
   const [loading, isLoading] = useState(false);
 
   useEffect(() => {
-    fetch("/posts")
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`)
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode === 200 && data.message === "SUCCESS") {

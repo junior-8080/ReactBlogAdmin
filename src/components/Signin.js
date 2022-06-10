@@ -47,7 +47,7 @@ const Signin = () => {
       password: values.password,
     };
     setIsLoading(true);
-    fetch(`${REACT_APP_API_BASE_URL}/login`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -34,7 +34,7 @@ const PostForm = ({ postId, article }) => {
       id: postId,
       body: currentHTML,
     };
-    fetch(`${REACT_APP_API_BASE_URL}/posts`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
