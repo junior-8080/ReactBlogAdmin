@@ -35,8 +35,7 @@
   color: grey;
 }
 .signin {
-  /* background-color:rgb(247, 186, 105) ; */
-  background-image: url("./images/bg.jpg");
+
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -83,4 +82,7 @@ div.public-DraftEditor-content {
 }
 .view:hover{
   color:#5f0a87
+}
+.ant-form label{
+  color:#fff;
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {LoadingOutlined} from '@ant-design/icons'
 import {Form, Input, Button, message,Row,Col} from 'antd';
+import image from '../images/image.svg'
 
 
 const layout = {
@@ -25,10 +26,11 @@ const Signin = () => {
   
     const style = {
         marginLeft: 'auto',
-        backgroundColor: "#fff",
+        backgroundColor: "purple",
         padding: '2em',
         marginTop: "10em",
-        borderRadius: 5
+        borderRadius: 5,
+       
     }
 
     const antIcon = <LoadingOutlined style={{
@@ -74,7 +76,10 @@ const Signin = () => {
     return (
         
         <Row className='signin'>
-            <Col span={8} className='form'>
+            <Col span={12}>
+                <img src={image} alt="logo" />
+            </Col>
+            <Col span={8} >
                 <Form
                     style={style}
                     {...layout}
@@ -82,12 +87,14 @@ const Signin = () => {
                     initialValues={{
                     remember: true
                 }}
-                    onFinish={onFinish}>
+                    onFinish={onFinish}
+                    
+                    >
                     <h4
                         style={{
-                        color: "#001529",
+                        color: "#fff",
                         textAlign: "center"
-                    }}>SIGNIN
+                    }}>MY BLOG SITE
                     </h4>
                     <Form.Item
                         label="Username"
@@ -116,7 +123,7 @@ const Signin = () => {
                             htmlType="submit"
                             size="small"
                             style={{
-                            color: "#001529",
+                            color: "#fff",
                             width:80
                         }}>
                         <span>Login</span>{isLoading

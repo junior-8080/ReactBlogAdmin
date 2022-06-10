@@ -45,7 +45,7 @@ const Article = ({id}) => {
     return (
         <AdminLayout>
            {loading ? <Col span={16} className="loading"><p>Loading...</p></Col> : <Col span ={16}>
-             <Link to="/articles"><Button icon={<ArrowLeftOutlined />} size="small" style={btnStyle}>Back</Button></Link> 
+             {/* <Link to="/articles"><Button icon={<ArrowLeftOutlined />} size="small" style={btnStyle}>Back</Button></Link>  */}
               <PostForm  article = {article} postId = {article._id} />
             </Col>}
             <Col span={4} className="adminRigth">

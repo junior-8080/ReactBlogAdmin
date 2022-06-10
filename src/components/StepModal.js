@@ -45,7 +45,7 @@ const StepModal  = ({isModalVisible,handleVisibility}) => {
                 window.location = `/articles/${result.data.postId}`
               
             }
-        })
+        }).catch(err => console.log(err))
     }
   
 

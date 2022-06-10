@@ -25,7 +25,7 @@
   },
   "proxy": "http://localhost:3004/v1/api",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3005 react-scripts  --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
