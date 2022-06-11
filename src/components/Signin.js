@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Form, Input, Button, message, Row, Col } from "antd";
+import { Button, Col, Form, Input, message, Row } from "antd";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import image from "../images/image.svg";
 
 const layout = {
@@ -19,9 +20,9 @@ const tailLayout = {
   },
 };
 
-const Signin = () => {
+const Signin = (props) => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const history = useHistory();
   const style = {
     marginLeft: "auto",
     backgroundColor: "purple",
@@ -59,7 +60,8 @@ const Signin = () => {
         if (result.statusCode === 200 && result.message === "SUCCESS") {
           localStorage.setItem("profile", JSON.stringify(result.data));
           setIsLoading(false);
-          window.location = `/articles`;
+          history.push('/articles')
+
         } else {
           if (result.statusCode === 304 && result.message === "INVALID") {
             message.error("Invlaid Username or Password");
@@ -67,7 +69,7 @@ const Signin = () => {
         }
         setIsLoading(false);
       })
-      .catch((err) => message.error("Error Occured While Performing Action"));
+      .catch((err) =>{ console.log(err);message.error("Error Occured While Performing Action")});
   };
 
   return (
