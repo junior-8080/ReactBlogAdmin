@@ -2,11 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, Button } from "antd";
 import { ProfileOutlined, FolderOpenOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 
 const SideBar = ({ handleVisibility }) => {
+
+  const history = useHistory();
   const logout = () => {
     localStorage.removeItem("profile");
-    window.location = "/";
+    // window.location = "/";
+    history.push('/')
   };
 
   const btnStyle = {

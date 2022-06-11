@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input, Modal, Steps, Button, message } from "antd";
+import { useHistory } from "react-router-dom";
 
 const { Step } = Steps;
 
@@ -7,6 +8,7 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
   const [summary, setSummary] = useState("");
   const [name, setName] = useState("");
   const [current, setCurrent] = useState(0);
+  const history = useHistory();
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -35,7 +37,8 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
           setName("");
           handleVisibility();
           message.success("Article Created");
-          window.location = `/articles/${result.data.postId}`;
+          // window.location = `/articles/${result.data.postId}`;
+          history.push(`/articles/${result.data.postId}`)
         }
       })
       .catch((err) => console.log(err));
