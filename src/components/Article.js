@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
-import { Button, Col, message } from "antd";
+import { Col, message } from "antd";
+import React, { useEffect, useState } from "react";
+import { aboutExpireFormat } from "../utils";
 import AdminLayout from "./AdminLayout";
 import PostForm from "./PostForm";
-import { useState } from "react";
-import { aboutExpireFormat } from "../utils";
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-
-
 
 const Article = ({ id }) => {
   const [article, setArticle] = useState("");
@@ -30,13 +25,7 @@ const Article = ({ id }) => {
       });
   }, [id]);
 
-  const btnStyle = {
-    backgroundColor: "#5f0a87",
-    marginTop: ".5em",
-    marginBottom: ".5em",
-    color: "#fff",
-    border: "none",
-  };
+
 
   return (
     <AdminLayout>

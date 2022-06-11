@@ -24,12 +24,13 @@
     "uuid": "^8.3.2",
     "yup": "^0.32.6"
   },
-  "proxy": "http://localhost:3004/v1/api",
   "scripts": {
-    "start": "PORT=3005 react-scripts  --openssl-legacy-provider start",
+    "start": "react-scripts  --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "PORT=3005 react-scripts  --openssl-legacy-provider start"
+
   },
   "eslintConfig": {
     "extends": "react-app"
