@@ -34,7 +34,7 @@ const Article = ({ id }) => {
           <p>Loading...</p>
         </Col>
       ) : (
-        <Col span={16}>
+        <Col span={16}  className="editor">
           {/* <Link to="/articles"><Button icon={<ArrowLeftOutlined />} size="small" style={btnStyle}>Back</Button></Link>  */}
           <PostForm article={article} postId={article._id} />
         </Col>
@@ -42,8 +42,7 @@ const Article = ({ id }) => {
       <Col span={4} className="adminRigth">
         <div className="accountDetails">
           <div>
-            <h3>Article Details</h3>
-            {/* <hr /> */}
+            <h3><i class="fa fa-book"></i>Article Details</h3>
             <div>
               <p>Title :</p>
               <p>{article.title}</p>

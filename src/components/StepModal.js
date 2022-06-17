@@ -8,14 +8,26 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
   const [summary, setSummary] = useState("");
   const [name, setName] = useState("");
   const [current, setCurrent] = useState(0);
+  const [titleError,setTitleError] = useState(false);
+  const [summaryError,setSummaryError] = useState(false);
   const history = useHistory();
 
   const handleName = (event) => {
     setName(event.target.value);
+    if(name.length >  70  || name.length < 0 ){
+      setTitleError(true)
+    }else {
+      setTitleError(false)
+    }
   };
 
   const handleSummary = (event) => {
     setSummary(event.target.value);
+    if(summary.length < 0 || summary.length > 100){
+      setSummaryError(true);
+    }else {
+      setSummaryError(false)
+    }
   };
 
   const onFinished = () => {
@@ -71,7 +83,7 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
         <Button
           key="back"
           onClick={prev}
-          disabled={current < 0 || current !== steps.length - 1}
+          disabled={current < 0 || current !== steps.length - 1 }
           size="small"
         >
           previous
@@ -80,7 +92,7 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
           key="next"
           type="primary"
           onClick={next}
-          disabled={current === steps.length - 1 && steps.length - 1}
+          disabled={(current === steps.length - 1 && steps.length - 1) || titleError || summaryError}
           size="small"
         >
           next
@@ -106,8 +118,9 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
           <Step key={item.title} title={item.title} />
         ))}
       </Steps>
-      <p className="helper">Should be greater than 5 characters</p>
       <div className="stepsContent">{steps[current].content}</div>
+      {titleError ? <p className="helper">Title should be less between 5-70.</p>: ''}
+      {summaryError ? <p>Summary text should between 5-100</p>:''}
     </Modal>
   );
 };

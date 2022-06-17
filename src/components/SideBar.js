@@ -9,16 +9,18 @@ const SideBar = ({ handleVisibility }) => {
   const history = useHistory();
   const logout = () => {
     localStorage.removeItem("profile");
-    // window.location = "/";
     history.push('/')
   };
 
+
+
   const btnStyle = {
     width: "90%",
-    backgroundColor: "#a4508b",
+    backgroundColor: "#692856",
     marginTop: "1em",
     color: "#fff",
     border: "none",
+    boxShadow:"3px 3px #251320 "
   };
   const style = {
     textAlign: "center",
@@ -33,7 +35,6 @@ const SideBar = ({ handleVisibility }) => {
         style={{
           height: "100vh",
           backgroundColor: "#a4508b",
-          backgroundImage: "linear-gradient(326deg, #a4508b 0%, #5f0a87 74%)",
           color: "#000",
         }}
         defaultSelectedKeys={["1"]}
