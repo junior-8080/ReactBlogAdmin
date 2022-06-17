@@ -1,3 +1,4 @@
+
 .page {
   height: 100vh;
 }
@@ -21,7 +22,7 @@
   padding: 1em;
 }
 .adminRigth,
-.accountDetails h3 {
+.accountDetails h3{
   padding: 1em;
   color: #fff;
 }
