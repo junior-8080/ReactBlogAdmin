@@ -74,8 +74,8 @@ const Signin = (props) => {
 
   return (
     <Row className="signin">
-      <Col span={12}>
-        <img src={image} alt="logo" />
+      <Col span={12} className="signin-banner"> 
+        <img src={image} alt="logo"  />
       </Col>
       <Col span={8}>
         <Form
