@@ -25,8 +25,6 @@ const Article = ({ id }) => {
       });
   }, [id]);
 
-
-
   return (
     <AdminLayout>
       {loading ? (
@@ -34,15 +32,16 @@ const Article = ({ id }) => {
           <p>Loading...</p>
         </Col>
       ) : (
-        <Col span={16}  className="editor">
-          {/* <Link to="/articles"><Button icon={<ArrowLeftOutlined />} size="small" style={btnStyle}>Back</Button></Link>  */}
+        <Col md={16} xs={24}>
           <PostForm article={article} postId={article._id} />
         </Col>
       )}
-      <Col span={4} className="adminRigth">
+      <Col md={4} xs={0} className="adminRigth">
         <div className="accountDetails">
           <div>
-            <h3><i class="fa fa-book"></i>Article Details</h3>
+            <h3>
+              <i class="fa fa-book"></i>Article Details
+            </h3>
             <div>
               <p>Title :</p>
               <p>{article.title}</p>

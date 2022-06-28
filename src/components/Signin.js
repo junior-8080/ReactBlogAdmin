@@ -74,10 +74,10 @@ const Signin = (props) => {
 
   return (
     <Row className="signin">
-      <Col span={12} className="signin-banner"> 
+      <Col span={12} xs={0}  md ={12} className="signin-banner"> 
         <img src={image} alt="logo"  />
       </Col>
-      <Col span={8}>
+      <Col span={8} md={8} xs={20}>
         <Form
           style={style}
           {...layout}

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, ContentState, convertFromHTML } from "draft-js";
-import { Button, message } from "antd";
+import { Button, message, } from "antd";
 import { convertToHTML } from "draft-convert";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import Menusm from "./Menusm";
+
 
 const PostForm = ({ postId, article }) => {
   const blocksFromHTML = convertFromHTML(article.body || "<p>Loading....</p>");
@@ -49,8 +51,18 @@ const PostForm = ({ postId, article }) => {
       });
   };
 
+  
   return (
-    <>
+    <div className="editor-root-container">
+      <div className="navs-sm">
+        <Menusm />
+        <div className="save-sm">
+          <Button onClick={handleSave} className="save-btn">
+             Save
+          </Button>
+        </div>
+      </div>
+
       <Editor
         editorState={editState}
         wrapperClassName="wrapper-class"
@@ -60,9 +72,11 @@ const PostForm = ({ postId, article }) => {
         placeholder="The message goes here..."
       />
       <div className="save">
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={handleSave} className="save-btn">
+          Save
+        </Button>
       </div>
-    </>
+    </div>
   );
 };
 

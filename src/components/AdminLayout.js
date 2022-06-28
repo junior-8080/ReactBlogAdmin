@@ -15,7 +15,7 @@ const AdminLayout = ({children}) => {
 
     return (
         <Row>
-            <Col span={4}>
+            <Col md={4} xs={0}>
                <SideBar handleVisibility = {handleVisibility} />
             </Col>
             {

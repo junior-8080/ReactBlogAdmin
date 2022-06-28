@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 const SideBar = ({ handleVisibility }) => {
 
   const history = useHistory();
+  
   const logout = () => {
     localStorage.removeItem("profile");
     history.push('/')

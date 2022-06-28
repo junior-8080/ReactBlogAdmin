@@ -56,8 +56,8 @@ const ArticlesTable = () => {
 
   return (
     <AdminLayout>
-      <Col span={16}>
-        <h1>Articles</h1>
+      <Col md={16} xs={24}>
+        <h1 className="article-heading">Articles</h1>
         <Table
           dataSource={articles}
           columns={columns}
@@ -68,7 +68,7 @@ const ArticlesTable = () => {
           loading={loading}
         />
       </Col>
-      <Col span={4} className="adminRigth">
+      <Col md={4}  xs={0} className="adminRigth">
         {profile ? (
           <div className="accountDetails">
             <h3>Account</h3>
