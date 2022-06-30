@@ -14,14 +14,12 @@ const Article = ({ id }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.statusCode === 200 && data.message === "SUCCESS") {
-          // console.log(data.data)
           setArticle(data.data);
           isLoading(false);
         } else {
           message.info(data.data.message);
           isLoading(false);
         }
-        // console.log(data)
       });
   }, [id]);
 
@@ -36,7 +34,7 @@ const Article = ({ id }) => {
           <PostForm article={article} postId={article._id} />
         </Col>
       )}
-      <Col md={4} xs={0} className="adminRigth">
+      <Col md={4} xs={0} sm={0} className="adminRigth">
         <div className="accountDetails">
           <div>
             <h3>

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Col, Table, Collapse, message } from "antd";
+import React, { useEffect, useState,useContext } from "react";
+import { Col, Table, Collapse, message,Button } from "antd";
 import { Link } from "react-router-dom";
 import AdminLayout from "./AdminLayout";
+import Menusm from "./Menusm";
+import { VisibleContext } from "./VisibilityContext";
 
-const ArticlesTable = () => {
+const ArticlesTable = (props) => {
   const [profile, setprofile] = useState(null);
   const [articles, setArticles] = useState(null);
   const [loading, isLoading] = useState(false);
-
+  const {handleVisibility} = useContext(VisibleContext);
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`)
       .then((res) => res.json())
@@ -55,20 +57,26 @@ const ArticlesTable = () => {
   ];
 
   return (
-    <AdminLayout>
-      <Col md={16} xs={24}>
-        <h1 className="article-heading">Articles</h1>
+    <AdminLayout handleVisibility ={props.handleVisibility}>
+      <Col md={16} xs={24} sm={24}>
+        <div className="navs-sm">
+          <Menusm />
+          <h1 className="article-heading">Articles</h1>
+          <div className="menu-sm">
+             <Button size="sm" onClick={() => {handleVisibility()}}>Create Article</Button>
+          </div>
+        </div>
         <Table
           dataSource={articles}
           columns={columns}
           pagination={{
-            // total:articles.length,
             defaultPageSize: 4,
+            size:"small"
           }}
           loading={loading}
         />
       </Col>
-      <Col md={4}  xs={0} className="adminRigth">
+      <Col md={4} xs={0}  sm={0}className="adminRigth">
         {profile ? (
           <div className="accountDetails">
             <h3>Account</h3>

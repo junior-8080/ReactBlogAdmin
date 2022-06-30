@@ -53,10 +53,6 @@ div.public-DraftEditor-content {
   height: 80vh;
   overflow-y: scroll;
 }
-/* .rdw-editor-wrapper{
-  height: 80vh;
-  overflow-y: scroll;
-}  */
 
 .save {
   display: flex;
@@ -71,16 +67,16 @@ div.public-DraftEditor-content {
   width: 20%;
   cursor: pointer;
 }
-.save button:hover {
+/* .save button:hover {
   background-color: #692856;
   color: #fff;
-}
-.view {
+} */
+/* .view {
   color: #a4508b;
 }
 .view:hover {
   color: #5f0a87;
-}
+} */
 .ant-form label {
   color: #fff;
 }
@@ -111,11 +107,15 @@ div.public-DraftEditor-content {
 .save-sm {
   display: none;
 }
-.menu-sm button {
+.menu-sm button{
   background-color: #692856;
   color: #fff;
 }
+
 @media screen and (max-width: 567px) {
+  body{
+    font-size:16px;
+  }
   .save button {
     display: none;
   }
@@ -150,4 +150,14 @@ div.public-DraftEditor-content {
     height: 80vh;
     overflow-y: scroll;
   }
+  .article-heading {
+    text-align:none;
+    font-size:16px;
+
+  }
+  .create-artice-btn-sm {
+    display:block;
+
+  }
+  
 }
