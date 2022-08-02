@@ -55,9 +55,8 @@ const ArticlesTable = (props) => {
       },
     },
   ];
-
   return (
-    <AdminLayout handleVisibility ={props.handleVisibility}>
+    <AdminLayout >
       <Col md={16} xs={24} sm={24}>
         <div className="navs-sm">
           <Menusm />

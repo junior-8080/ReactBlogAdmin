@@ -51,7 +51,7 @@ const SideBar = ({ handleVisibility }) => {
           </Link>
         </Menu.Item>
         <div style={style}>
-          <Button onClick={handleVisibility} style={btnStyle}>
+          <Button onClick={() => handleVisibility()} style={btnStyle}>
             Create Article
           </Button>
           <Button className="newPost" onClick={logout} style={btnStyle}>
