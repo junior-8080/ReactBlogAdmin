@@ -14,7 +14,7 @@ const ArticlesTable = (props) => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.statusCode === 200 && data.message === "SUCCESS") {
+        if (data.statusCode === 200) {
           setArticles(data.data);
           isLoading(false);
           setprofile(JSON.parse(localStorage.getItem("profile")));

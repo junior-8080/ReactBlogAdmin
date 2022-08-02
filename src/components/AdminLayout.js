@@ -1,6 +1,7 @@
-import { Col, Row } from "antd";
 import React from "react";
 import SideBar from "./SideBar";
+import { Col, Row } from "antd";
+
 
 const AdminLayout = (props) => {
   return (

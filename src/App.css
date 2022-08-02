@@ -67,16 +67,7 @@ div.public-DraftEditor-content {
   width: 20%;
   cursor: pointer;
 }
-/* .save button:hover {
-  background-color: #692856;
-  color: #fff;
-} */
-/* .view {
-  color: #a4508b;
-}
-.view:hover {
-  color: #5f0a87;
-} */
+
 .ant-form label {
   color: #fff;
 }

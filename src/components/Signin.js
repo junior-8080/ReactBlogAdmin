@@ -57,25 +57,25 @@ const Signin = (props) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.statusCode === 200 && result.message === "SUCCESS") {
+        if (result.statusCode === 200) {
           localStorage.setItem("profile", JSON.stringify(result.data));
-          setIsLoading(false);
-          history.push('/articles')
-
+          history.push("/articles");
         } else {
-          if (result.statusCode === 304 && result.message === "INVALID") {
+          if (result.statusCode === 304 && result.status === "UNAUTHORIZED") {
             message.error("Invlaid Username or Password");
           }
         }
-        setIsLoading(false);
       })
-      .catch((err) =>{ console.log(err);message.error("Error Occured While Performing Action")});
+      .catch((err) => {
+        message.error("Error Occured While Performing Action");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
     <Row className="signin">
-      <Col span={12} xs={0}  md ={12} className="signin-banner"> 
-        <img src={image} alt="logo"  />
+      <Col span={12} xs={0} md={12} className="signin-banner">
+        <img src={image} alt="logo" />
       </Col>
       <Col span={8} md={8} xs={20}>
         <Form

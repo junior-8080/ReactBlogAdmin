@@ -13,7 +13,7 @@ const Article = ({ id }) => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.statusCode === 200 && data.message === "SUCCESS") {
+        if (data.statusCode === 200) {
           setArticle(data.data);
           isLoading(false);
         } else {
