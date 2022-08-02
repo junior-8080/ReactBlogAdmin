@@ -7,13 +7,10 @@ import { useHistory } from "react-router-dom";
 const SideBar = ({ handleVisibility }) => {
 
   const history = useHistory();
-  
   const logout = () => {
     localStorage.removeItem("profile");
     history.push('/')
   };
-
-
 
   const btnStyle = {
     width: "90%",
@@ -23,6 +20,7 @@ const SideBar = ({ handleVisibility }) => {
     border: "none",
     boxShadow:"3px 3px #251320 "
   };
+
   const style = {
     textAlign: "center",
     marginTop: "60vh",

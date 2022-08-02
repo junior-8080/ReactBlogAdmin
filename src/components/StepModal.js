@@ -35,7 +35,7 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
       title: name,
       description: summary,
     };
-    const profile = JSON.stringify(localStorage.getItem("profile"))
+    const profile = JSON.parse(localStorage.getItem("profile"))
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "POST",
       headers: {
@@ -46,13 +46,13 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.statusCode === 200 && result.message === "SUCCESS") {
+        if (result.statusCode === 200) {
           setSummary("");
           setName("");
           handleVisibility();
           message.success("Article Created");
           // window.location = `/articles/${result.data.postId}`;
-          history.push(`/articles/${result.data.postId}`)
+          history.push(`/articles/${result.data.id}`)
         }
       })
       .catch((err) => console.log(err));

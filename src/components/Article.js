@@ -1,8 +1,10 @@
+import React, { useEffect, useState} from "react";
 import { Col, message } from "antd";
-import React, { useEffect, useState } from "react";
 import { aboutExpireFormat } from "../utils";
 import AdminLayout from "./AdminLayout";
 import PostForm from "./PostForm";
+
+
 
 const Article = ({ id }) => {
   const [article, setArticle] = useState("");

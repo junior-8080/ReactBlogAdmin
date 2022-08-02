@@ -57,6 +57,7 @@ const Signin = (props) => {
     })
       .then((res) => res.json())
       .then((result) => {
+        console.log(result)
         if (result.statusCode === 200) {
           localStorage.setItem("profile", JSON.stringify(result.data));
           history.push("/articles");

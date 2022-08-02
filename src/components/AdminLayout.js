@@ -7,7 +7,6 @@ import { VisibleContext } from "./VisibilityContext";
 
 const AdminLayout = (props) => {
   const {handleVisibility} = useContext(VisibleContext);
-
   return (
     <Row>
       <Col md={4} xs={0}>

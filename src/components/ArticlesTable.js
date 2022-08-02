@@ -1,5 +1,5 @@
-import React, { useEffect, useState,useContext } from "react";
-import { Col, Table, Collapse, message,Button } from "antd";
+import React, { useEffect, useState, useContext } from "react";
+import { Col, Table, Collapse, message, Button } from "antd";
 import { Link } from "react-router-dom";
 import AdminLayout from "./AdminLayout";
 import Menusm from "./Menusm";
@@ -9,7 +9,8 @@ const ArticlesTable = (props) => {
   const [profile, setprofile] = useState(null);
   const [articles, setArticles] = useState(null);
   const [loading, isLoading] = useState(false);
-  const {handleVisibility} = useContext(VisibleContext);
+  const { handleVisibility } = useContext(VisibleContext);
+
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`)
       .then((res) => res.json())
@@ -17,7 +18,7 @@ const ArticlesTable = (props) => {
         if (data.statusCode === 200) {
           setArticles(data.data);
           isLoading(false);
-          setprofile(JSON.parse(localStorage.getItem("profile")));
+          setprofile(JSON.parse(localStorage.getItem("profile")).user);
         } else {
           message.info(data.data.message);
           isLoading(false);
@@ -56,13 +57,20 @@ const ArticlesTable = (props) => {
     },
   ];
   return (
-    <AdminLayout >
+    <AdminLayout>
       <Col md={16} xs={24} sm={24}>
         <div className="navs-sm">
           <Menusm />
           <h1 className="article-heading">Articles</h1>
           <div className="menu-sm">
-             <Button size="sm" onClick={() => {handleVisibility()}}>Create Article</Button>
+            <Button
+              size="sm"
+              onClick={() => {
+                handleVisibility();
+              }}
+            >
+              Create Article
+            </Button>
           </div>
         </div>
         <Table
@@ -70,12 +78,12 @@ const ArticlesTable = (props) => {
           columns={columns}
           pagination={{
             defaultPageSize: 4,
-            size:"small"
+            size: "small",
           }}
           loading={loading}
         />
       </Col>
-      <Col md={4} xs={0}  sm={0}className="adminRigth">
+      <Col md={4} xs={0} sm={0} className="adminRigth">
         {profile ? (
           <div className="accountDetails">
             <h3>Account</h3>
