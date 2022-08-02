@@ -35,10 +35,12 @@ const StepModal = ({ isModalVisible, handleVisibility }) => {
       title: name,
       description: summary,
     };
+    const profile = JSON.stringify(localStorage.getItem("profile"))
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-access-token": profile.token
       },
       body: JSON.stringify(body),
     })

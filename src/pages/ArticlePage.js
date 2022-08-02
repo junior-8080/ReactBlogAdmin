@@ -10,7 +10,4 @@ const ArticlePage = (props) => {
     );
 }
 
-
-
-
 export default ArticlePage;
