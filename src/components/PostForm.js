@@ -36,16 +36,18 @@ const PostForm = ({ postId, article }) => {
       id: postId,
       body: currentHTML,
     };
+    const profile = JSON.parse(localStorage.getItem("profile"))
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "x-access-token": profile.token
       },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.statusCode === 200 && result.message === "SUCCESS") {
+        if (result.statusCode === 200) {
           message.success("Articles Save");
         }
       });

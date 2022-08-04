@@ -6,7 +6,6 @@ const ArticlePage = (props) => {
     const id = props.match.params.id
     return (
       <Article  id = {id}/>
-      
     );
 }
 
