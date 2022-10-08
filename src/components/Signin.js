@@ -3,6 +3,7 @@ import { Button, Col, Form, Input, message, Row } from "antd";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import image from "../images/image.svg";
+import axios from "axios";
 
 const layout = {
   labelCol: {
@@ -48,29 +49,32 @@ const Signin = (props) => {
       password: values.password,
     };
     setIsLoading(true);
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
+    axios(`${process.env.REACT_APP_API_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      data,
     })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result)
-        if (result.statusCode === 200) {
-          localStorage.setItem("profile", JSON.stringify(result.data));
-          history.push("/articles");
-        } else {
-          if (result.statusCode === 304 && result.status === "UNAUTHORIZED") {
-            message.error("Invlaid Username or Password");
-          }
-        }
-      })
-      .catch((err) => {
-        message.error("Error Occured While Performing Action");
-      })
-      .finally(() => setIsLoading(false));
+    .then((result) => {
+      if (result.status === 200) {
+        const userProfile = result.data.data; 
+        localStorage.setItem("profile", JSON.stringify(userProfile));
+        history.push("/articles");
+      }
+    })
+    .catch((err) => {
+      let errorData = err.response;
+      if(errorData === undefined || errorData === ''){
+        return message.error("Error Occurred While Performing Action");
+      }
+      if(err.response.status === 401) {
+        message.error("Invalid Username or Password");
+      }else{
+        return message.error("Error Occurred While Performing Action");
+      }
+    })
+    .finally(() => setIsLoading(false));
   };
 
   return (
