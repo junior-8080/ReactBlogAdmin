@@ -1,22 +1,25 @@
-import React from "react";
-import { FolderOpenOutlined } from "@ant-design/icons";
+import React,{useEffect,useState} from "react";
+import { FolderOpenOutlined, UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import { useHistory } from "react-router-dom";
 
-
 export default function Menusm() {
-
-
+  const [userName, setUserName] = useState("");
   const history = useHistory();
   const logout = () => {
     localStorage.removeItem("profile");
-    history.push('/')
+    history.push("/");
   };
+
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    setUserName((profile.user || {}).name);
+  }, []);
 
   const menu = (
     <Menu
-    className="menus"
+      className="menus"
       items={[
         {
           key: 1,
@@ -29,7 +32,15 @@ export default function Menusm() {
         {
           key: 2,
           label: (
-            <Button  onClick={logout} style={{border:"none"}}>
+            <p to="/profile" >
+              <UserOutlined /> {userName}
+            </p>
+          ),
+        },
+        {
+          key: 3,
+          label: (
+            <Button onClick={logout} style={{ border: "none" }}>
               logout
             </Button>
           ),

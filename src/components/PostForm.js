@@ -7,7 +7,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Menusm from "./Menusm";
 
 
-const PostForm = ({ postId, article }) => {
+const PostForm = ({ postId, article,handleBody }) => {
   const blocksFromHTML = convertFromHTML(article.body || "<p>Loading....</p>");
   const [currentHTML, setConvertedContent] = useState("");
   const create = article.body
@@ -29,19 +29,20 @@ const PostForm = ({ postId, article }) => {
   const convertContentToHTML = () => {
     let currentContentAsHTML = convertToHTML(editState.getCurrentContent());
     setConvertedContent(currentContentAsHTML);
+    handleBody(currentHTML);
   };
 
   const handleSave = () => {
-    const data = {
+    const  data = {
       id: postId,
       body: currentHTML,
     };
-    const profile = JSON.parse(localStorage.getItem("profile"))
+    const profile = JSON.parse(localStorage.getItem("profile"));
     fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": profile.token
+        "x-access-token": profile.token,
       },
       body: JSON.stringify(data),
     })
@@ -53,7 +54,6 @@ const PostForm = ({ postId, article }) => {
       });
   };
 
-  
   return (
     <div className="editor-root-container">
       <div className="navs-sm">
@@ -73,11 +73,6 @@ const PostForm = ({ postId, article }) => {
         onEditorStateChange={handleChange}
         placeholder="The message goes here..."
       />
-      <div className="save">
-        <Button onClick={handleSave} className="save-btn">
-          Save
-        </Button>
-      </div>
     </div>
   );
 };

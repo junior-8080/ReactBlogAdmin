@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Button } from "antd";
-import { ProfileOutlined, FolderOpenOutlined } from "@ant-design/icons";
+import { FolderOpenOutlined,UserOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 
 const SideBar = ({ handleVisibility }) => {
 
+  const [userName, setUserName] = useState("");
   const history = useHistory();
   const logout = () => {
     localStorage.removeItem("profile");
     history.push('/')
   };
 
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    setUserName((profile.user||{}).name);
+  },[])
   const btnStyle = {
     width: "90%",
     backgroundColor: "#692856",
     marginTop: "1em",
     color: "#fff",
     border: "none",
-    boxShadow:"3px 3px #251320 "
   };
 
   const style = {
@@ -43,10 +47,10 @@ const SideBar = ({ handleVisibility }) => {
             <FolderOpenOutlined /> Articles
           </Link>
         </Menu.Item>
-        <Menu.Item className="newPost" key="2" disabled={true}>
-          <Link to="/articles">
-            <ProfileOutlined /> Images
-          </Link>
+        <Menu.Item className="newPost" key="2" disabled>
+          <p >
+            <UserOutlined /> {userName}
+          </p>
         </Menu.Item>
         <div style={style}>
           <Button onClick={() => handleVisibility()} style={btnStyle}>

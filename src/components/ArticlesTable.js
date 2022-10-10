@@ -6,7 +6,6 @@ import Menusm from "./Menusm";
 import { VisibleContext } from "./VisibilityContext";
 
 const ArticlesTable = (props) => {
-  const [profile, setprofile] = useState(null);
   const [articles, setArticles] = useState(null);
   const [loading, isLoading] = useState(false);
   const { handleVisibility } = useContext(VisibleContext);
@@ -18,7 +17,6 @@ const ArticlesTable = (props) => {
         if (data.statusCode === 200) {
           setArticles(data.data);
           isLoading(false);
-          setprofile(JSON.parse(localStorage.getItem("profile")).user);
         } else {
           message.info(data.data.message);
           isLoading(false);
@@ -58,7 +56,7 @@ const ArticlesTable = (props) => {
   ];
   return (
     <AdminLayout>
-      <Col md={16} xs={24} sm={24}>
+      <Col md={20} xs={24} sm={24} className="main-view">
         <div className="navs-sm">
           <Menusm />
           <h1 className="article-heading">Articles</h1>
@@ -82,25 +80,6 @@ const ArticlesTable = (props) => {
           }}
           loading={loading}
         />
-      </Col>
-      <Col md={4} xs={0} sm={0} className="adminRigth">
-        {profile ? (
-          <div className="accountDetails">
-            <h3>Account</h3>
-            <div className="accountDetails">
-              <div>
-                <p>Name: </p>
-                <p>{profile.name}</p>
-              </div>
-              <div>
-                <p>Email: </p>
-                <p>{profile.email}</p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <p>Loading....</p>
-        )}
       </Col>
     </AdminLayout>
   );
