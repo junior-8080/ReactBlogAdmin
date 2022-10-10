@@ -11,17 +11,24 @@ const ArticlesTable = (props) => {
   const { handleVisibility } = useContext(VisibleContext);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.statusCode === 200) {
-          setArticles(data.data);
-          isLoading(false);
-        } else {
-          message.info(data.data.message);
-          isLoading(false);
-        }
-      });
+    const token = localStorage.getItem("blog_admin_token");
+    const profileData = JSON.parse(localStorage.getItem("blog_admin_profile"));
+    console.log(profileData)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${profileData.userId}/posts`,{
+      headers: {
+        "x-access-token":token
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.statusCode === 200) {
+        setArticles(data.data);
+        isLoading(false);
+      } else {
+        message.info(data.data.message);
+        isLoading(false);
+      }
+    });
   }, []);
 
   const genExtra = (id) => (

@@ -58,8 +58,9 @@ const Signin = (props) => {
     })
     .then((result) => {
       if (result.status === 200) {
-        const userProfile = result.data.data; 
-        localStorage.setItem("profile", JSON.stringify(userProfile));
+        const {user,token} = result.data.data; 
+        localStorage.setItem("blog_admin_profile", JSON.stringify(user));
+        localStorage.setItem("blog_admin_token", token);
         history.push("/articles");
       }
     })

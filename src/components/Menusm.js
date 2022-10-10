@@ -13,8 +13,8 @@ export default function Menusm() {
   };
 
   useEffect(() => {
-    const profile = JSON.parse(localStorage.getItem("profile"));
-    setUserName((profile.user || {}).name);
+    const profile = JSON.parse(localStorage.getItem("blog_admin_profile"));
+    setUserName(profile.name);
   }, []);
 
   const menu = (
@@ -32,9 +32,9 @@ export default function Menusm() {
         {
           key: 2,
           label: (
-            <p to="/profile" >
+            <Link to="/profile" >
               <UserOutlined /> {userName}
-            </p>
+            </Link>
           ),
         },
         {

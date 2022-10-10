@@ -3,6 +3,7 @@
   width: 98%;
   box-shadow: 0px 6px 0px 0px rgb(32 33 36 / 28%);
 }
+
 .newPost {
   color: #000;
 }
@@ -11,24 +12,29 @@
   height: 45vh;
   border-left: 1px solid #000;
 }
+
 .accountDetails {
   background-color: #a4508b;
   color: #fff;
   border-radius: 0.5em;
   padding: 1em;
 }
+
 .adminRigth,
 .accountDetails h3 {
   padding: 1em;
   color: #fff;
 }
+
 .stepsContent {
   margin-top: 1em;
 }
+
 .helper {
   font-size: small;
   color: red;
 }
+
 .signin {
   display: flex;
   justify-content: center;
@@ -38,10 +44,12 @@
   background-attachment: fixed;
   background-size: cover;
 }
+
 .details {
   padding: 1em;
   background-color: green;
 }
+
 .loading {
   display: flex;
   justify-content: center;
@@ -56,15 +64,16 @@ div.public-DraftEditor-content {
 
 .save {
   width: 100%;
-  margin-top:1em;
+  margin-top: 1em;
   /* cursor: pointer; */
 }
+
 .save button,
 .save-sm button {
   background-color: #692856;
   border: none;
   color: white;
-  width:100%;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -76,6 +85,7 @@ div.public-DraftEditor-content {
   color: red;
   color: #251320;
 }
+
 .ant-col-16 {
   border-right: 1px solid #000;
   border-left: 1px solid #000;
@@ -88,71 +98,110 @@ div.public-DraftEditor-content {
 .article-heading {
   text-align: center;
 }
+
 .rdw-editor-main {
   box-shadow: 3px 1px 6px 4px rgb(32 33 36 / 28%);
   padding: 1em;
 }
+
 .menu-sm {
   display: none;
 }
+
 .save-sm {
   display: none;
 }
-.menu-sm button{
+
+.menu-sm button {
   background-color: #692856;
   color: #fff;
 }
-.ant-menu.ant-menu-dark .ant-menu-item-selected .ant-menu-item-active .ant-menu-item-selected .ant-menu-item-only-child{
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected .ant-menu-item-active .ant-menu-item-selected .ant-menu-item-only-child {
   background-color: #754f69;
 }
 
+button {
+  background-color: #692856;
+}
+.signin form {
+  margin-left: auto;
+  background-color: rgb(164, 80, 139);
+  padding: 2em;
+  margin-top: 10em;
+  border-radius: 10px;
+}
 
 @media screen and (max-width: 567px) {
-  body{
-    font-size:16px;
+  body {
+    font-size: 16px;
   }
+
   .save button {
     display: none;
   }
+
   .save {
     display: none;
   }
+
   .save-sm {
     display: block;
     width: 20%;
   }
+
   .menu-sm {
     display: block;
   }
+
   .save-sm button {
     width: 100%;
   }
+
   .navs-sm {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 0px;
   }
+
   .rdw-editor-toolbar {
     font-size: 12px !important;
   }
+
   .rdw-option-wrapper {
     height: 10px !important;
   }
+
   div.public-DraftEditor-content {
     width: 100%;
     overflow-y: scroll;
   }
+
   .rdw-editor-wrapper {
     height: 80vh;
     overflow-y: scroll;
   }
+
   .article-heading {
-    text-align:none;
-    font-size:16px;
+    text-align: none;
+    font-size: 16px;
 
   }
+
   .create-artice-btn-sm {
-    display:block;
+    display: block;
 
   }
-  
+
+  .signin form {
+    margin-left: 0px;
+    padding: 1em;
+    margin-top: 1em;
+    /* height: 100%; */
+  }
+
+  .signin {
+    height: 150%;
+  }
+
 }

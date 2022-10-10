@@ -7,6 +7,7 @@ import "./App.css";
 import { ProtectedRouter } from "./ProtectedRouter";
 import Articles from "./pages/ArticlesPage";
 import Article from "./pages/ArticlePage";
+import Profile from "./pages/ProfilePage";
 
 
 
@@ -16,6 +17,7 @@ const App = () => {
       <PreventLogout path="/" exact component={Signin} />
       <ProtectedRouter path="/articles" exact component={Articles} />
       <ProtectedRouter path="/articles/:id" component={Article} />
+      <ProtectedRouter path="/profile" component={Profile} />
       <Route
         path="*"
         render={() => {

@@ -14,8 +14,8 @@ const SideBar = ({ handleVisibility }) => {
   };
 
   useEffect(() => {
-    const profile = JSON.parse(localStorage.getItem("profile"));
-    setUserName((profile.user||{}).name);
+    const profile = JSON.parse(localStorage.getItem("blog_admin_profile"));
+    setUserName(profile.username);
   },[])
   const btnStyle = {
     width: "90%",
@@ -47,10 +47,10 @@ const SideBar = ({ handleVisibility }) => {
             <FolderOpenOutlined /> Articles
           </Link>
         </Menu.Item>
-        <Menu.Item className="newPost" key="2" disabled>
-          <p >
+        <Menu.Item className="newPost" key="2">
+          <Link to="/profile" >
             <UserOutlined /> {userName}
-          </p>
+          </Link>
         </Menu.Item>
         <div style={style}>
           <Button onClick={() => handleVisibility()} style={btnStyle}>
