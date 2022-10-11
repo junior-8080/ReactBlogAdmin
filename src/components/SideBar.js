@@ -9,7 +9,7 @@ const SideBar = ({ handleVisibility }) => {
   const [userName, setUserName] = useState("");
   const history = useHistory();
   const logout = () => {
-    localStorage.removeItem("profile");
+    localStorage.removeItem("blog_admin_profile");
     history.push('/')
   };
 
@@ -40,14 +40,14 @@ const SideBar = ({ handleVisibility }) => {
           backgroundColor: "#a4508b",
           color: "#000",
         }}
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={[`${window.location.pathname}`]}
       >
-        <Menu.Item className="newPost" key="1">
+        <Menu.Item className="newPost" key="/articles">
           <Link to="/articles">
             <FolderOpenOutlined /> Articles
           </Link>
         </Menu.Item>
-        <Menu.Item className="newPost" key="2">
+        <Menu.Item className="newPost" key="/profile">
           <Link to="/profile" >
             <UserOutlined /> {userName}
           </Link>

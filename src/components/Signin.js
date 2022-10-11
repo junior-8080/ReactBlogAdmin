@@ -14,13 +14,6 @@ const layout = {
   },
 };
 
-const tailLayout = {
-  wrapperCol: {
-    offset: 10,
-    span: 16,
-  },
-};
-
 const Signin = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -56,32 +49,34 @@ const Signin = (props) => {
       },
       data,
     })
-    .then((result) => {
-      if (result.status === 200) {
-        const {user,token} = result.data.data; 
-        localStorage.setItem("blog_admin_profile", JSON.stringify(user));
-        localStorage.setItem("blog_admin_token", token);
-        history.push("/articles");
-      }
-    })
-    .catch((err) => {
-      let errorData = err.response;
-      if(errorData === undefined || errorData === ''){
-        return message.error("Error Occurred While Performing Action");
-      }
-      if(err.response.status === 401) {
-        message.error("Invalid Username or Password");
-      }else{
-        return message.error("Error Occurred While Performing Action");
-      }
-    })
-    .finally(() => setIsLoading(false));
+      .then((result) => {
+        if (result.status === 200) {
+          const { user, token } = result.data.data;
+          localStorage.setItem("blog_admin_profile", JSON.stringify(user));
+          localStorage.setItem("blog_admin_token", token);
+          history.push("/articles");
+        }
+      })
+      .catch((err) => {
+        let errorData = err.response;
+        if (errorData === undefined || errorData === "") {
+          return message.error("Error Occurred While Performing Action");
+        }
+        if (err.response.status === 401) {
+          message.error("Invalid Username or Password");
+        } else {
+          return message.error("Error Occurred While Performing Action");
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
     <Row className="signin">
       <Col span={12} xs={0} md={12} className="signin-banner">
-        <img src={image} alt="logo" />
+        <div className="signin-banner-img-container">
+          <img src={image} alt="logo" />
+        </div>
       </Col>
       <Col span={8} md={8} xs={20}>
         <Form
@@ -92,7 +87,7 @@ const Signin = (props) => {
             remember: true,
           }}
           onFinish={onFinish}
-        > 
+        >
           <h4
             style={{
               color: "#fff",
@@ -126,17 +121,15 @@ const Signin = (props) => {
           >
             <Input.Password />
           </Form.Item>
-          <Form.Item {...tailLayout}>
+          <Form.Item label=" " colon={false}>
             <Button
-              type="primary"
               htmlType="submit"
-              size="small"
               style={{
                 color: "#fff",
-                width: 80,
+                width: "100%",
               }}
             >
-              <span>Login</span>
+              Login
               {isLoading ? antIcon : ""}
             </Button>
           </Form.Item>

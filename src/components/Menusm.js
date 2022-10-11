@@ -8,7 +8,7 @@ export default function Menusm() {
   const [userName, setUserName] = useState("");
   const history = useHistory();
   const logout = () => {
-    localStorage.removeItem("profile");
+    localStorage.removeItem("blog_admin_profile");
     history.push("/");
   };
 
@@ -40,9 +40,9 @@ export default function Menusm() {
         {
           key: 3,
           label: (
-            <Button onClick={logout} style={{ border: "none" }}>
+            <p onClick={logout} style={{ border: "none" }}>
               logout
-            </Button>
+            </p>
           ),
         },
       ]}

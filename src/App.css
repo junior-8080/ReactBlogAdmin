@@ -35,6 +35,10 @@
   color: red;
 }
 
+.ant-row {
+  height: 100%;
+}
+
 .signin {
   display: flex;
   justify-content: center;
@@ -91,9 +95,19 @@ div.public-DraftEditor-content {
   border-left: 1px solid #000;
 }
 
-.signin-banner img {
-  width: 70%;
+.signin-banner {
+  text-align: end;
 }
+
+.signin-banner-img-container{
+  text-align: end;
+}
+
+.signin-banner-img-container img {
+  width: 80%;
+}
+
+
 
 .article-heading {
   text-align: center;
@@ -121,8 +135,19 @@ div.public-DraftEditor-content {
   background-color: #754f69;
 }
 
-button {
+.ant-btn,.ant-btn-primary,.ant-btn-default{
   background-color: #692856;
+  border: none;
+}
+
+.ant-btn-primary:hover,.ant-btn-default:hover{
+  background-color: #692856;
+  color:#fff; 
+
+}
+
+.ant-form-item-control{
+  border: none
 }
 .signin form {
   margin-left: auto;
@@ -131,6 +156,10 @@ button {
   margin-top: 10em;
   border-radius: 10px;
 }
+.ant-menu.ant-menu-dark .ant-menu-item-selected{
+ background-color: #692856 !important;
+}
+
 
 @media screen and (max-width: 567px) {
   body {
